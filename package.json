@@ -1,0 +1,23 @@
+{
+  "name": "node-capstone-project",
+  "version": "1.0.0",
+  "description": "REST API app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rrogerthat/exp-tracker-Node-Capstone-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rrogerthat/exp-tracker-Node-Capstone-App/issues"
+  },
+  "homepage": "https://github.com/rrogerthat/exp-tracker-Node-Capstone-App#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
