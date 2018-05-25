@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: 4809c7a2-9074-4b5a-9e01-0e15f0d7525c
+  app: node-exp-tracker
+  on:
+    repo: rrogerthat/exp-tracker-Node-Capstone-App
