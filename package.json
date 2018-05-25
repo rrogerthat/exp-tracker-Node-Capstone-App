@@ -19,5 +19,10 @@
   "homepage": "https://github.com/rrogerthat/exp-tracker-Node-Capstone-App#readme",
   "dependencies": {
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0"
   }
 }
