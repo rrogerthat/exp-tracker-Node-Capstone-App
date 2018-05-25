@@ -8,7 +8,7 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 
-describe('Test', function() {
+describe('Test', function() {	//test sample to make sure testing modules work.
 	it('return status code 200 and HTML on GET', function() {
 		return chai.request(app)
 			.get('/')
