@@ -2,6 +2,10 @@ body {
   box-sizing: border-box;
 }
 
+#signoutBtn {
+	margin-left: 60px;
+}
+
 .expense-list {
 	list-style: none;
 	padding-left: 0;
@@ -21,4 +25,13 @@ span {
 
 div > p {
 	font-weight: normal; /* Don't bold individual amounts */
+}
+
+form label {
+	display: block;
+}
+
+form button {
+	display: block;
+	margin-top: 5px;
 }

@@ -9,8 +9,8 @@
 <body>
 	<h1>Expense Tracker</h1>
 
-	<button type="submit">Add Expense</button>
-
+<section id="home-page">
+	<button type="submit" id="newExp">Add Expense</button> <button type="submit" id="signoutBtn">Log Out</button>
 	<ul class="expense-list">
 		<li>
 			Gas Total:<span class="total-1"></span><button class="detailsBtn-1" type="submit">Show Details</button>
@@ -40,6 +40,78 @@
 			<div class="expense-items-7" data-expanded="false"></div>
 		</li>
 	</ul>
+</section>
+
+<section id="login-page">
+	<form>
+		<h2>Login</h2>
+		<fieldset name="login-info">
+			<legend>Login Info</legend>
+
+			<label for="login-name">Username</label>
+			<input placeholder="johndoe111" type="text" name="login-name" id="login-name">
+
+			<label for="password">Password</label>
+      		<input type="password" name="key" id="key" placeholder="123456">
+
+      		<button type="submit" id="loginBtn">Sign In</button>
+      		<button type="submit" id="signupBtn">Register</button>
+	</form>
+</section>
+
+<section id="signup-page">
+	<form>
+		<h2>Sign Up</h2>
+		<fieldset name="user-info">
+			<legend>User Info</legend>
+
+			<label for="first-name">First name</label>
+     		<input placeholder="John" type="text" name="first-name" id="first-name">
+
+     		<label for="last-name">Last name</label>
+      		<input type="text" name="last-name" id="last-name" placeholder="Doe">
+
+			<label for="user-name">Username</label>
+			<input placeholder="johndoe111" type="text" name="user-name" id="user-name">
+
+			<label for="password">Password</label>
+      		<input type="password" name="password" id="password" placeholder="123456">
+
+      		<button type="submit" id="regBtn">Register</button>
+      		<button type="close" id="cancelBtn">Cancel</button>
+	</form>	
+</section>
+
+<section id="entry-page">
+	<form>
+		<h2>Enter Expense</h2>
+		<fieldset name="expense-info">
+			<legend>Expense</legend>
+
+			<label for="category">Choose Category</label>
+			<select name="category" required>
+				<option value="1">Gas</option>
+        		<option value="2">Groceries</option>
+        		<option value="3">Restaurants</option>
+        		<option value="4">Entertainment</option>
+        		<option value="5">Medical</option>
+        		<option value="6">Other Necessities</option>
+        		<option value="7">Misc</option>
+      		</select>
+
+			<label for="date">Date</label>
+			<input placeholder="12/01/2017" type="date" name="date" id="date">
+
+			<label for="description">Description</label>
+      		<input type="text" name="description" id="description" placeholder="Abcd">
+
+      		<label for="cost">Cost</label>
+      		<input type="amount" name="cost" id="cost" placeholder="10.00">	<!-- Follow up with type -->
+
+      		<button type="submit" id="entryBtn">Ok</button>
+      		<button type="submit" id="abortBtn">Cancel</button>
+	</form>
+</section>
 	
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
