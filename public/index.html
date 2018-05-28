@@ -1,1 +1,51 @@
-<p>Hello World</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Expense Tracker</title>
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+	<h1>Expense Tracker</h1>
+
+	<button type="submit">Add Expense</button>
+
+	<ul class="expense-list">
+		<li>
+			Gas Total:<span class="total-1"></span><button class="detailsBtn-1" type="submit">Show Details</button>
+			<div class="expense-items-1" data-expanded="false"></div>	<!-- Using data attributes -->
+		</li>
+		<li>
+			Restaurants Total:<span class="total-2"></span><button class="detailsBtn-2" type="submit">Show Details</button>
+			<div class="expense-items-2" data-expanded="false"></div>
+		</li>
+		<li>
+			Entertainment Total:<span class="total-3"></span><button class="detailsBtn-3" type="submit">Show Details</button>
+			<div class="expense-items-3" data-expanded="false"></div>
+		</li>
+		<li>
+			Groceries Total:<span class="total-4"></span><button class="detailsBtn-4" type="submit">Show Details</button>
+			<div class="expense-items-4" data-expanded="false"></div>
+		</li>
+		<li>
+			Medical Total:<span class="total-5"></span><button class="detailsBtn-5" type="submit">Show Details</button>
+			<div class="expense-items-5" data-expanded="false"></div>
+		</li>
+		<li>
+			Other Necessities Total:<span class="total-6"></span><button class="detailsBtn-6" type="submit">Show Details</button><div class="expense-items-6" data-expanded="false"></div>
+		</li>
+		<li>
+			Misc Total:<span class="total-7"></span><button class="detailsBtn-7" type="submit">Show Details</button>
+			<div class="expense-items-7" data-expanded="false"></div>
+		</li>
+	</ul>
+	
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="mock-database.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
