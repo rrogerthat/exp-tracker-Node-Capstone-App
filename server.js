@@ -7,6 +7,7 @@ const passport = require('passport');
 // const bodyParser = require('body-parser');	//don't need for posts to /users to work?
 
 const { router: usersRouter } = require('./users'); //rename router to usersRouter (Obj destr assignment)
+const { router: authRouter } = require('./auth');
 // const {localStrategy} = require('./auth');
 
 //config.js is where we control constants for entire app like PORT and DATABASE_URL
@@ -20,8 +21,9 @@ app.use(morgan('common'));	//use common style for logging (also for catch/try er
 app.use(express.static('public'));	//to serve static assets from public folder.
 // app.use(bodyParser.json());
 
-app.use('/users', usersRouter); //Requests to /users is redirected to usersRouter (renamed from router)
 // passport.use(localStrategy);
+app.use('/users', usersRouter); //Requests to /users is redirected to usersRouter (renamed from router)
+app.use('/auth', authRouter);  
 
 // CORS
 app.use(function (req, res, next) {
