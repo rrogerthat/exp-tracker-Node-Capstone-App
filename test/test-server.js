@@ -1,7 +1,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-const app = require('../server'); //import server.js and create variable for server.app
+const {app, runServer, closeServer} = require('../server');  //import server.js and create variable for server.app
 
 const expect = chai.expect;
 
