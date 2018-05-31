@@ -1,5 +1,5 @@
 'use strict';
 const {router} = require('./router');
-const {localStrategy} = require('./strategies');
+// const {localStrategy} = require('./strategies');
 
-module.exports = {router, localStrategy};
+module.exports = {router};	//localStrategy
