@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');	//assists in communicating with Mongo db.
 const morgan = require('morgan');	//logging middleware
 const passport = require('passport');
-// const bodyParser = require('body-parser');	//don't need for posts to /users to work?
+const bodyParser = require('body-parser');	//don't need for posts to /users to work?
 
 const { router: usersRouter } = require('./users'); //rename router to usersRouter (Obj destr assignment)
 // const { router: authRouter } = require('./auth');
@@ -19,7 +19,7 @@ mongoose.Promise = global.Promise;
 const app = express();	//creates Express app.
 app.use(morgan('common'));	//use common style for logging (also for catch/try error logging)
 app.use(express.static('public'));	//to serve static assets from public folder.
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 // passport.use(localStrategy);
 app.use('/users', usersRouter); //Requests to /users is redirected to usersRouter (renamed from router)
@@ -58,7 +58,7 @@ function runServer(databaseUrl, port = PORT) {
       }
       server = app.listen(port, () => {   //Tell server where to listen for requests on the configured port. Run http server.
         console.log(`Your app is listening on port ${port}`);	//localhost:8080
-        resolve(server);                        //promise fulfilled.
+        resolve();                        //promise fulfilled.
       })
         .on('error', err => {
           mongoose.disconnect();
