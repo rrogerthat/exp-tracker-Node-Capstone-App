@@ -2,7 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const mongoose = require('mongoose');
 
-const {DATABASE_URL} = require('../config');
+const {TEST_DATABASE_URL} = require('../config');
 const {app, runServer, closeServer} = require('../server');  //import server.js and create variable for server.app
 
 const expect = chai.expect;
@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 describe('Test', function() {	//test sample to make sure testing modules work.
 
   before(function() {
-    return runServer(DATABASE_URL);                                          
+    return runServer(TEST_DATABASE_URL);                                          
   });
 
   after(function() {
