@@ -225,9 +225,9 @@ $(function() {
 
 	//to login
 	$('#loginBtn').click(function(event) {	//login page
-		event.preventDefault();
-		$('#login-page').hide(100);
-		$('#home-page').show(300);
+		// event.preventDefault();
+		// $('#login-page').hide(100);
+		// $('#home-page').show(300);
 	});
 
 	//to choose to sign up
@@ -272,8 +272,7 @@ $(function() {
 		$('#home-page').show(300);
 	});
 
-//------------------Form submittals-----------------------
-	//To register new account 
+	//To REGISTER new account 
 	$('#signup-form').submit(function(event) {
 		event.preventDefault();
 
@@ -287,7 +286,7 @@ $(function() {
 			lastName: last,
 			username: user,
 			password: pass
-		}
+		};
 
 		$.ajax({
 			type: 'POST',
@@ -297,7 +296,7 @@ $(function() {
 			dataType: 'json',
 			success: function(data) {
 				alert('You have successfully signed up!');
-				$("#signup-form").trigger('reset'); //clear form
+				$('#signup-form').trigger('reset'); //clear form
 				$('#signup-page').hide(150);
 				$('#login-page').show(400);
 				// $('#login-afterreg').after('You have successfully signed up!');
@@ -313,5 +312,35 @@ $(function() {
 			}
 		})
 	});
+
+	//To LOGIN user 
+	$('#login-form').submit(function(event) {
+		event.preventDefault();
+
+		const username = $('#login-name').val();
+		const password = $('#login-pw').val();
+
+		const loginObj = {
+			username: username,
+			password: password
+		};
+
+		$.ajax({
+			type: 'POST',
+			url: '/auth/login',
+			contentType: 'application/json',
+			data: JSON.stringify(loginObj),
+			dataType: 'json',
+			success: function(data) {
+				$('#login-form').trigger('reset');
+				$('#login-page').hide(100);
+				$('#home-page').show(300);
+			},
+			error: function() {
+				alert('Please check username and/or password.');
+			}
+		})
+
+	});	
 
 });
