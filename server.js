@@ -1,5 +1,6 @@
 "use strict";
 
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');	//assists in communicating with Mongo db.
 const morgan = require('morgan');	//logging middleware
@@ -7,23 +8,32 @@ const passport = require('passport');
 const bodyParser = require('body-parser');	//don't need for posts to /users to work?
 
 const { router: usersRouter } = require('./users'); //rename router to usersRouter (Obj destr assignment)
-// const { router: authRouter } = require('./auth');
-// const {localStrategy} = require('./auth');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 //config.js is where we control constants for entire app like PORT and DATABASE_URL
 const { PORT, DATABASE_URL } = require('./config'); 
 
 mongoose.Promise = global.Promise;
 
-
 const app = express();	//creates Express app.
 app.use(morgan('common'));	//use common style for logging (also for catch/try error logging)
 app.use(express.static('public'));	//to serve static assets from public folder.
 app.use(bodyParser.json());
 
-// passport.use(localStrategy);
+passport.use(localStrategy);
+passport.use(jwtStrategy); 
+
 app.use('/users', usersRouter); //Requests to /users is redirected to usersRouter (renamed from router)
-// app.use('/auth', authRouter);  
+app.use('/auth', authRouter);  
+
+const jwtAuth = passport.authenticate('jwt', { session: false }); //use passport to authenticate rather than cookies.
+
+// A protected endpoint which needs a valid JWT to access it
+app.get('/protected', jwtAuth, (req, res) => {
+  return res.json({
+    data: 'sampledata'
+  });
+});
 
 // CORS
 app.use(function (req, res, next) {

@@ -43,18 +43,18 @@
 </section>
 
 <section id="login-page">
-	<form>
+	<form id="login-form">
 		<h2 id="login-afterreg">Login</h2>
 		<fieldset name="login-info">
 			<legend>Login Info</legend>
 
 			<label for="login-name">Username</label>
-			<input placeholder="johndoe111" type="text" name="login-name" id="login-name">
+			<input placeholder="johndoe111" type="text" name="login-name" id="login-name" required>
 
 			<label for="password">Password</label>
-      		<input type="password" name="key" id="key" placeholder="123456">
+      		<input placeholder="123456" type="password" name="password" id="login-pw" required><br>
 
-      		<button type="submit" id="loginBtn">Sign In</button>
+      		<input id="loginBtn" type="submit" value="Sign In">
       		<button type="submit" id="signupBtn">Register</button>
 	</form>
 </section>

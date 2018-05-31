@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 describe('Test', function() {	//test sample to make sure testing modules work.
 
   before(function() {
-    return runServer(TEST_DATABASE_URL);                                          
+    return runServer(TEST_DATABASE_URL);	//put environmental variables in Travis CI settings                                     
   });
 
   after(function() {
