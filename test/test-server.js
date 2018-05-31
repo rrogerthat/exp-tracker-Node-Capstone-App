@@ -7,8 +7,18 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
-
+//before and after for 
 describe('Test', function() {	//test sample to make sure testing modules work.
+
+  before(function() {
+    return runServer();                                          
+  });
+
+  after(function() {
+    return closeServer();
+  });
+
+
 	it('return status code 200 and HTML on GET', function() {
 		return chai.request(app)
 			.get('/')
