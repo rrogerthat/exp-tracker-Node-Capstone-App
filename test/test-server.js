@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 describe('Test', function() {	//test sample to make sure testing modules work.
 
   before(function() {
-    return runServer();                                          
+    return runServer(DATABASE_URL);                                          
   });
 
   after(function() {
