@@ -237,13 +237,6 @@ $(function() {
 		$('#signup-page').show(300);
 	});
 
-	//to sign up with personal info
-	$('#regBtn').click(function(event) {	//sign up page
-		event.preventDefault();
-		$('#signup-page').hide(150);
-		$('#login-page').show(400);
-	});
-
 	//cancel sign up
 	$('#cancelBtn').click(function(event) { //sign up page
 		event.preventDefault();
@@ -278,4 +271,47 @@ $(function() {
 		$('#entry-page').hide(100);
 		$('#home-page').show(300);
 	});
-})
+
+//------------------Form submittals-----------------------
+	//To register new account 
+	$('#signup-form').submit(function(event) {
+		event.preventDefault();
+
+		const first = $('#firstname-reg').val();
+		const last = $('#lastname-reg').val();
+		const user = $('#username-reg').val();
+		const pass = $('#password-reg').val();
+
+		const newUser = {
+			firstName: first,
+			lastName: last,
+			username: user,
+			password: pass
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: '/users/register',
+			contentType: 'application/json',
+			data: JSON.stringify(newUser),
+			dataType: 'json',
+			success: function(data) {
+				alert('You have successfully signed up!');
+				$("#signup-form").trigger('reset'); //clear form
+				$('#signup-page').hide(150);
+				$('#login-page').show(400);
+				// $('#login-afterreg').after('You have successfully signed up!');
+			},
+			error: function(res) {
+				if(res.responseJSON.message === 'Username already taken') {
+					alert('Username already taken.');
+				} else if (pass.length < 6 || pass.length > 72) {
+					alert('Password needs to be between 6 to 72 characters.');
+				} else if (res.responseJSON.message === 'Cannot start or end with whitespace') {
+					alert('Username and password cannot start or end with empty spaces.');
+				} 
+			}
+		})
+	});
+
+});

@@ -18,7 +18,13 @@
   },
   "homepage": "https://github.com/rrogerthat/exp-tracker-Node-Capstone-App#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.3",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",

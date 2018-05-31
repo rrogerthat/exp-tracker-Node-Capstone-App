@@ -9,7 +9,7 @@
 <body>
 	<h1>Expense Tracker</h1>
 
-<section id="home-page">
+<section id="home-page"> <li><a href="/">Go Home</a></li> <!--Sample route-->
 	<button type="submit" id="newExp">Add Expense</button> <button type="submit" id="signoutBtn">Log Out</button>
 	<ul class="expense-list">
 		<li>
@@ -44,7 +44,7 @@
 
 <section id="login-page">
 	<form>
-		<h2>Login</h2>
+		<h2 id="login-afterreg">Login</h2>
 		<fieldset name="login-info">
 			<legend>Login Info</legend>
 
@@ -60,24 +60,24 @@
 </section>
 
 <section id="signup-page">
-	<form>
+	<form id="signup-form"> <!--submit event handler using jquery-->
 		<h2>Sign Up</h2>
 		<fieldset name="user-info">
 			<legend>User Info</legend>
 
 			<label for="first-name">First name</label>
-     		<input placeholder="John" type="text" name="first-name" id="first-name">
+     		<input placeholder="John" type="text" name="first-name" id="firstname-reg" required>
 
      		<label for="last-name">Last name</label>
-      		<input type="text" name="last-name" id="last-name" placeholder="Doe">
+      		<input placeholder="Doe" type="text" name="last-name" id="lastname-reg">
 
-			<label for="user-name">Username</label>
-			<input placeholder="johndoe111" type="text" name="user-name" id="user-name">
+			<label for="user-name">Username (Cannot start or end with spaces)</label>
+			<input placeholder="johndoe111" type="text" name="user-name" id="username-reg" required>
 
-			<label for="password">Password</label>
-      		<input type="password" name="password" id="password" placeholder="123456">
+			<label for="password">Password (Must be between 6 to 72 characters | Cannot start or end with spaces)</label>
+      		<input placeholder="123456" type="password" name="password" id="password-reg" required><br>
 
-      		<button type="submit" id="regBtn">Register</button>
+      		<input id="regBtn" type="submit" value="Register"> <!--changed from button to input for form submittal to process-->
       		<button type="close" id="cancelBtn">Cancel</button>
 	</form>	
 </section>
