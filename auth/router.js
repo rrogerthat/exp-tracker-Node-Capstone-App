@@ -1,13 +1,13 @@
-'use strict';
-const express = require('express');
-const passport = require('passport');
-const bodyParser = require('body-parser');
+// 'use strict';
+// const express = require('express');
+// const passport = require('passport');
+// const bodyParser = require('body-parser');
 
-const config = require('../config');
-const router = express.Router();
+// const config = require('../config');
+// const router = express.Router();
 
 
 
-router.use(bodyParser.json());
+// router.use(bodyParser.json());
 
-module.exports = {router};
+// module.exports = {router};
