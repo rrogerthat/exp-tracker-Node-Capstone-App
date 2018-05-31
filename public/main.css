@@ -1,0 +1,37 @@
+body {
+  box-sizing: border-box;
+}
+
+#signoutBtn {
+	margin-left: 60px;
+}
+
+.expense-list {
+	list-style: none;
+	padding-left: 0;
+}
+
+.expense-list > li {
+	font-weight: bold;
+	border-bottom: 1px solid grey;
+	margin-bottom: 10px;
+}
+
+span {
+	font-weight: bold;
+	margin-left: 10px;
+	margin-right: 15px;
+}
+
+div > p {
+	font-weight: normal; /* Don't bold individual amounts */
+}
+
+form label {
+	display: block;
+}
+
+form button {
+	display: block;
+	margin-top: 5px;
+}

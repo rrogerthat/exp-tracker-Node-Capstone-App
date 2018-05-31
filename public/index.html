@@ -1,1 +1,123 @@
-<p>Hello World</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Expense Tracker</title>
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+	<h1>Expense Tracker</h1>
+
+<section id="home-page"> <li><a href="/">Go Home</a></li> <!--Sample route-->
+	<button type="submit" id="newExp">Add Expense</button> <button type="submit" id="signoutBtn">Log Out</button>
+	<ul class="expense-list">
+		<li>
+			Gas Total:<span class="total-1"></span><button class="detailsBtn-1" type="submit">Show Details</button>
+			<div class="expense-items-1" data-expanded="false"></div>	<!-- Using data attributes -->
+		</li>
+		<li>
+			Restaurants Total:<span class="total-2"></span><button class="detailsBtn-2" type="submit">Show Details</button>
+			<div class="expense-items-2" data-expanded="false"></div>
+		</li>
+		<li>
+			Entertainment Total:<span class="total-3"></span><button class="detailsBtn-3" type="submit">Show Details</button>
+			<div class="expense-items-3" data-expanded="false"></div>
+		</li>
+		<li>
+			Groceries Total:<span class="total-4"></span><button class="detailsBtn-4" type="submit">Show Details</button>
+			<div class="expense-items-4" data-expanded="false"></div>
+		</li>
+		<li>
+			Medical Total:<span class="total-5"></span><button class="detailsBtn-5" type="submit">Show Details</button>
+			<div class="expense-items-5" data-expanded="false"></div>
+		</li>
+		<li>
+			Other Necessities Total:<span class="total-6"></span><button class="detailsBtn-6" type="submit">Show Details</button><div class="expense-items-6" data-expanded="false"></div>
+		</li>
+		<li>
+			Misc Total:<span class="total-7"></span><button class="detailsBtn-7" type="submit">Show Details</button>
+			<div class="expense-items-7" data-expanded="false"></div>
+		</li>
+	</ul>
+</section>
+
+<section id="login-page">
+	<form>
+		<h2 id="login-afterreg">Login</h2>
+		<fieldset name="login-info">
+			<legend>Login Info</legend>
+
+			<label for="login-name">Username</label>
+			<input placeholder="johndoe111" type="text" name="login-name" id="login-name">
+
+			<label for="password">Password</label>
+      		<input type="password" name="key" id="key" placeholder="123456">
+
+      		<button type="submit" id="loginBtn">Sign In</button>
+      		<button type="submit" id="signupBtn">Register</button>
+	</form>
+</section>
+
+<section id="signup-page">
+	<form id="signup-form"> <!--submit event handler using jquery-->
+		<h2>Sign Up</h2>
+		<fieldset name="user-info">
+			<legend>User Info</legend>
+
+			<label for="first-name">First name</label>
+     		<input placeholder="John" type="text" name="first-name" id="firstname-reg" required>
+
+     		<label for="last-name">Last name</label>
+      		<input placeholder="Doe" type="text" name="last-name" id="lastname-reg">
+
+			<label for="user-name">Username (Cannot start or end with spaces)</label>
+			<input placeholder="johndoe111" type="text" name="user-name" id="username-reg" required>
+
+			<label for="password">Password (Must be between 6 to 72 characters | Cannot start or end with spaces)</label>
+      		<input placeholder="123456" type="password" name="password" id="password-reg" required><br>
+
+      		<input id="regBtn" type="submit" value="Register"> <!--changed from button to input for form submittal to process-->
+      		<button type="close" id="cancelBtn">Cancel</button>
+	</form>	
+</section>
+
+<section id="entry-page">
+	<form>
+		<h2>Enter Expense</h2>
+		<fieldset name="expense-info">
+			<legend>Expense</legend>
+
+			<label for="category">Choose Category</label>
+			<select name="category" required>
+				<option value="1">Gas</option>
+        		<option value="2">Groceries</option>
+        		<option value="3">Restaurants</option>
+        		<option value="4">Entertainment</option>
+        		<option value="5">Medical</option>
+        		<option value="6">Other Necessities</option>
+        		<option value="7">Misc</option>
+      		</select>
+
+			<label for="date">Date</label>
+			<input placeholder="12/01/2017" type="date" name="date" id="date">
+
+			<label for="description">Description</label>
+      		<input type="text" name="description" id="description" placeholder="Abcd">
+
+      		<label for="cost">Cost</label>
+      		<input type="amount" name="cost" id="cost" placeholder="10.00">	<!-- Follow up with type -->
+
+      		<button type="submit" id="entryBtn">Ok</button>
+      		<button type="submit" id="abortBtn">Cancel</button>
+	</form>
+</section>
+	
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="mock-database.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
