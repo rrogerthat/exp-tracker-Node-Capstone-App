@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const expSchema = mongoose.Schema({
 	category: {type: String, required: true},
-	date: {type: Date},
+	date: {type: Date, required: true},
 	description: {type: String, required: true},
 	cost: {type: Number, required: true}
 });
@@ -13,10 +13,10 @@ expSchema.methods.serialize = function() {	//serialize is self-created method na
 	const date = new Date(this.date);
 
 	return {
-		date: date.getMonth() + '/' + date.getDate() + '/' +  date.getFullYear(),
+		date: (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear(),
 		description: this.description,
-		cost: `$${this.cost.toFixed(2)}`
-		// Id: this._id
+		cost: `$${this.cost.toFixed(2)}`,
+		// created: this._id
 	}
 }
 
