@@ -223,13 +223,6 @@ $(function() {
 	$('section').hide();
 	$('#login-page').show();
 
-	//to login
-	$('#loginBtn').click(function(event) {	//login page
-		// event.preventDefault();
-		// $('#login-page').hide(100);
-		// $('#home-page').show(300);
-	});
-
 	//to choose to sign up
 	$('#signupBtn').click(function(event) {	//login page
 		event.preventDefault();
