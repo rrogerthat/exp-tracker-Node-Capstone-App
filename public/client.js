@@ -1,221 +1,245 @@
-//get data from mock database
-function getExpenses(callbackFn) {
-	setTimeout(function() {callbackFn(MOCK_EXPENSES)}, 100);
-}
+//To display totals for all expense categories
+function displayExpTotals() {
+	const categoryArr = ['gas', 'restaurants', 'entertainment', 'groceries', 'medical', 'misc'];
 
-//display expenses to html page
-function displayGasExpenses(data) {
-	let counter = 0;	
-	for (index in data.gas) {
-		counter += Number(data.gas[index].cost);
+	for (i = 0; i < categoryArr.length; i++) {
+		$.ajax({
+			type: 'GET',
+			url: `/items/${categoryArr[i]}`,	
+			dataType: 'json',
+			success: function(data) {
+				if (data.expenses[0].category === 'gas') {
+					let totalExp = 0;							
+					for (index in data.expenses) {
+						totalExp += Number(data.expenses[index].cost);
+					}
+					$('.total-1').html("$" + totalExp.toFixed(2));	//round to 2 decimals (also converts to string)
+				} else if (data.expenses[0].category === 'restaurants') {
+					let totalExp2 = 0;							
+					for (index in data.expenses) {
+						totalExp2 += Number(data.expenses[index].cost);
+					}
+					$('.total-2').html("$" + totalExp2.toFixed(2));
+				} else if (data.expenses[0].category === 'entertainment') {
+					let totalExp3 = 0;							
+					for (index in data.expenses) {
+						totalExp3 += Number(data.expenses[index].cost);
+					}
+					$('.total-3').html("$" + totalExp3.toFixed(2));
+				} else if (data.expenses[0].category === 'groceries') {
+					let totalExp4 = 0;							
+					for (index in data.expenses) {
+						totalExp4 += Number(data.expenses[index].cost);
+					}
+					$('.total-4').html("$" + totalExp4.toFixed(2));
+				} else if (data.expenses[0].category === 'medical') {
+					let totalExp5 = 0;							
+					for (index in data.expenses) {
+						totalExp5 += Number(data.expenses[index].cost);
+					}
+					$('.total-5').html("$" + totalExp5.toFixed(2));
+				} else if (data.expenses[0].category === 'misc') {
+					let totalExp6 = 0;							
+					for (index in data.expenses) {
+						totalExp6 += Number(data.expenses[index].cost);
+					}
+					$('.total-6').html("$" + totalExp6.toFixed(2));
+				} 
+			}
+		})
 	}
-	$('.total-1').html("$" + counter.toFixed(2));	//add total for all gas
+};
 
+//display list of expenses for each category
+function displayGasExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-1", function(event) {
 		let dataAttr = $('.expense-items-1').data().expanded;
 
-		if (data.gas.length === 0 && dataAttr === false) {
-			$('.expense-items-1').html(`<p>Currently no expenditures here.</p>`);
-			$('.detailsBtn-1').text('Hide Details');
-			$('.expense-items-1').data().expanded = true;
-		} else if (dataAttr === false) { //check data attr value before displaying.
-			$('.detailsBtn-1').text('Hide Details');
-			for (index in data.gas) {
-				$('.expense-items-1').append(
-				`<p>${data.gas[index].date} ${data.gas[index].description} ${data.gas[index].cost} 
-				<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+		$.ajax({
+			type: 'GET',
+			url: '/items/gas',
+			dataType: 'json',
+			success: function(data) {
+				if (data.expenses.length === 0 && dataAttr === false) {
+					$('.expense-items-1').html(`<p>Currently no expenditures here.</p>`);
+					$('.detailsBtn-1').text('Hide Details');
+					$('.expense-items-1').data().expanded = true;
+				} else if (dataAttr === false) { //check data attr value before displaying.
+					$('.detailsBtn-1').text('Hide Details');
+					for (index in data.expenses) {
+						$('.expense-items-1').append(
+						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost} 
+						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+					}
+					$('.expense-items-1').data().expanded = true; //change data attr to true in order to hide exp details.
+				} else {	//hide exp details and set data attr to false
+					$('.expense-items-1').empty().data().expanded = false;
+					$('.detailsBtn-1').text('Show Details');
+				}
 			}
-			$('.expense-items-1').data().expanded = true; //change data attr to true in order to hide exp details.
-		} else {	//hide exp details and set data attr to false
-			$('.expense-items-1').empty().data().expanded = false;
-			$('.detailsBtn-1').text('Show Details');
-		}
+		})
 	});
 }
 
-function displayGroceryExpenses(data) {
-	let counter = 0;	
-	for (index in data.groceries) {
-		counter += Number(data.groceries[index].cost);
-	}
-	$('.total-2').html("$" + counter.toFixed(2));	//round to 2 decimals (also converts to string)
-
+function displayRestaurantExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-2", function(event) {
 		let dataAttr = $('.expense-items-2').data().expanded;
 
-		if (data.groceries.length === 0 && dataAttr === false) {
-			$('.expense-items-2').html(`<p>Currently no expenditures here.</p>`);
-			$('.detailsBtn-2').text('Hide Details');
-			$('.expense-items-2').data().expanded = true;
-		} else if (dataAttr === false) {
-			$('.detailsBtn-2').text('Hide Details');		
-			for (index in data.groceries) {
-				$('.expense-items-2').append(
-				`<p>${data.groceries[index].date} ${data.groceries[index].description} ${data.groceries[index].cost}
-				<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+		$.ajax({
+			type: 'GET',
+			url: '/items/restaurants',
+			dataType: 'json',
+			success: function(data) {
+				if (data.expenses.length === 0 && dataAttr === false) {
+					$('.expense-items-2').html(`<p>Currently no expenditures here.</p>`);
+					$('.detailsBtn-2').text('Hide Details');
+					$('.expense-items-2').data().expanded = true;
+				} else if (dataAttr === false) { 
+					$('.detailsBtn-2').text('Hide Details');
+					for (index in data.expenses) {
+						$('.expense-items-2').append(
+						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost} 
+						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+					}
+					$('.expense-items-2').data().expanded = true; 
+				} else {
+					$('.expense-items-2').empty().data().expanded = false;
+					$('.detailsBtn-2').text('Show Details');
+				}
 			}
-			$('.expense-items-2').data().expanded = true;
-		} else {
-			$('.expense-items-2').empty().data().expanded = false;
-			$('.detailsBtn-2').text('Show Details');
-		}
+		})
 	});
 }
 
-function displayRestaurantExpenses(data) {
-	let counter = 0;	
-	for (index in data.restaurants) {
-		counter += Number(data.restaurants[index].cost);
-	}
-	$('.total-3').html("$" + counter.toFixed(2));
-
+function displayEntertainmentExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-3", function(event) {
 		let dataAttr = $('.expense-items-3').data().expanded;
 
-		if (data.restaurants.length === 0 && dataAttr === false) {
-			$('.expense-items-3').html(`<p>Currently no expenditures here.</p>`);
-			$('.detailsBtn-3').text('Hide Details');
-			$('.expense-items-3').data().expanded = true;
-		} else if (dataAttr === false) {
-			$('.detailsBtn-3').text('Hide Details');
-			for (index in data.restaurants) {
-				$('.expense-items-3').append(
-				`<p>${data.restaurants[index].date} ${data.restaurants[index].description} ${data.restaurants[index].cost}
-				<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+		$.ajax({
+			type: 'GET',
+			url: '/items/entertainment',
+			dataType: 'json',
+			success: function(data) {
+				if (data.expenses.length === 0 && dataAttr === false) {
+					$('.expense-items-3').html(`<p>Currently no expenditures here.</p>`);
+					$('.detailsBtn-3').text('Hide Details');
+					$('.expense-items-3').data().expanded = true;
+				} else if (dataAttr === false) {
+					$('.detailsBtn-3').text('Hide Details');
+					for (index in data.expenses) {
+						$('.expense-items-3').append(
+						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost}
+						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+					}
+					$('.expense-items-3').data().expanded = true;
+				} else {
+					$('.expense-items-3').empty().data().expanded = false;
+					$('.detailsBtn-3').text('Show Details');
+				}
 			}
-			$('.expense-items-3').data().expanded = true;
-		} else {
-			$('.expense-items-3').empty().data().expanded = false;
-			$('.detailsBtn-3').text('Show Details');
-		}
+		})
 	});
 }
 
-function displayEntertainmentExpenses(data) {
-	let counter = 0;	
-	for (index in data.entertainment) {
-		counter += Number(data.entertainment[index].cost);
-	}
-	$('.total-4').html("$" + counter.toFixed(2));
-
+function displayGroceryExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-4", function(event) {
 		let dataAttr = $('.expense-items-4').data().expanded;
 
-		if (data.entertainment.length === 0 && dataAttr === false) {
-			$('.expense-items-4').html(`<p>Currently no expenditures here.</p>`);
-			$('.detailsBtn-4').text('Hide Details');
-			$('.expense-items-4').data().expanded = true;
-		} else if (dataAttr === false) {
-			$('.detailsBtn-4').text('Hide Details');
-			for (index in data.entertainment) {
-				$('.expense-items-4').append(
-				`<p>${data.entertainment[index].date} ${data.entertainment[index].description} ${data.entertainment[index].cost}
-				<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+		$.ajax({
+			type: 'GET',
+			url: '/items/groceries',
+			dataType: 'json',
+			success: function(data) {
+				if (data.expenses.length === 0 && dataAttr === false) {
+					$('.expense-items-4').html(`<p>Currently no expenditures here.</p>`);
+					$('.detailsBtn-4').text('Hide Details');
+					$('.expense-items-4').data().expanded = true;
+				} else if (dataAttr === false) {
+					$('.detailsBtn-4').text('Hide Details');
+					for (index in data.expenses) {
+						$('.expense-items-4').append(
+						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost}
+						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+					}
+					$('.expense-items-4').data().expanded = true;
+				} else {
+					$('.expense-items-4').empty().data().expanded = false;
+					$('.detailsBtn-4').text('Show Details');
+				}
 			}
-			$('.expense-items-4').data().expanded = true;
-		} else {
-			$('.expense-items-4').empty().data().expanded = false;
-			$('.detailsBtn-4').text('Show Details');
-		}
+		})
 	});
 }
 
-function displayMedicalExpenses(data) {
-	let counter = 0;	
-	for (index in data.medical) {
-		counter += Number(data.medical[index].cost);
-	}
-	$('.total-5').html("$" + counter.toFixed(2));
-
+function displayMedicalExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-5", function(event) {
 		let dataAttr = $('.expense-items-5').data().expanded;
 
-		if (data.medical.length === 0 && dataAttr === false) {
-			$('.expense-items-5').html(`<p>Currently no expenditures here.</p>`);
-			$('.detailsBtn-5').text('Hide Details');
-			$('.expense-items-5').data().expanded = true;
-		} else if (dataAttr === false) {
-			$('.detailsBtn-5').text('Hide Details');
-			for (index in data.medical) {
-				$('.expense-items-5').append(
-				`<p>${data.medical[index].date} ${data.medical[index].description} ${data.medical[index].cost}
-				<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+		$.ajax({
+			type: 'GET',
+			url: '/items/medical',
+			dataType: 'json',
+			success: function(data) {
+				if (data.expenses.length === 0 && dataAttr === false) {
+					$('.expense-items-5').html(`<p>Currently no expenditures here.</p>`);
+					$('.detailsBtn-5').text('Hide Details');
+					$('.expense-items-5').data().expanded = true;
+				} else if (dataAttr === false) {
+					$('.detailsBtn-5').text('Hide Details');
+					for (index in data.expenses) {
+						$('.expense-items-5').append(
+						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost}
+						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+					}
+					$('.expense-items-5').data().expanded = true;
+				} else {
+					$('.expense-items-5').empty().data().expanded = false;
+					$('.detailsBtn-5').text('Show Details');
+				}
 			}
-			$('.expense-items-5').data().expanded = true;
-		} else {
-			$('.expense-items-5').empty().data().expanded = false;
-			$('.detailsBtn-5').text('Show Details');
-		}
+		})
 	});
 }
 
-function displayOtherNecessitiesExpenses(data) {
-	let counter = 0;	
-	for (index in data.otherNecessities) {
-		counter += Number(data.otherNecessities[index].cost);
-	}
-	$('.total-6').html("$" + counter.toFixed(2));
-
+function displayMiscExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-6", function(event) {
 		let dataAttr = $('.expense-items-6').data().expanded;
 
-		if (data.otherNecessities.length === 0 && dataAttr === false) {
-			$('.expense-items-6').html(`<p>Currently no expenditures here.</p>`);
-			$('.detailsBtn-6').text('Hide Details');
-			$('.expense-items-6').data().expanded = true;
-		} else if (dataAttr === false) {
-			$('.detailsBtn-6').text('Hide Details');
-			for (index in data.otherNecessities) {
-				$('.expense-items-6').append(
-				`<p>${data.otherNecessities[index].date} ${data.otherNecessities[index].description} ${data.otherNecessities[index].cost}
-				<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+		$.ajax({
+			type: 'GET',
+			url: '/items/misc',
+			dataType: 'json',
+			success: function(data) {
+				if (data.expenses.length === 0 && dataAttr === false) {
+					$('.expense-items-6').html(`<p>Currently no expenditures here.</p>`);
+					$('.detailsBtn-6').text('Hide Details');
+					$('.expense-items-6').data().expanded = true;
+				} else if (dataAttr === false) {
+					$('.detailsBtn-6').text('Hide Details');
+					for (index in data.expenses) {
+						$('.expense-items-6').append(
+						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost}
+						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+					}
+					$('.expense-items-6').data().expanded = true;
+				} else {
+					$('.expense-items-6').empty().data().expanded = false;
+					$('.detailsBtn-6').text('Show Details');
+				}
 			}
-			$('.expense-items-6').data().expanded = true;
-		} else {
-			$('.expense-items-6').empty().data().expanded = false;
-			$('.detailsBtn-6').text('Show Details');
-		}
+		})
 	});
 }
 
-function displayMiscExpenses(data) {
-	let counter = 0;	
-	for (index in data.misc) {
-		counter += Number(data.misc[index].cost);
-	}
-	$('.total-7').html("$" + counter.toFixed(2));
-
-	$('.expense-list').on("click", ".detailsBtn-7", function(event) {
-		let dataAttr = $('.expense-items-7').data().expanded;
-
-		if (data.misc.length === 0 && dataAttr === false) {
-			$('.expense-items-7').html(`<p>Currently no expenditures here.</p>`);
-			$('.detailsBtn-7').text('Hide Details');
-			$('.expense-items-7').data().expanded = true;
-		} else if (dataAttr === false) {
-			$('.detailsBtn-7').text('Hide Details');
-			for (index in data.misc) {
-				$('.expense-items-7').append(
-				`<p>${data.misc[index].date} ${data.misc[index].description} ${data.misc[index].cost}
-				<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
-			}
-			$('.expense-items-7').data().expanded = true;
-		} else {
-			$('.expense-items-7').empty().data().expanded = false;
-			$('.detailsBtn-7').text('Show Details');
-		}
-	});
-}
-
-//start function when request is made to display expenses
+//start function when request is made to display expenses (below)
 function getAndDisplayExpenses() {
-	getExpenses(displayGasExpenses);
-	getExpenses(displayGroceryExpenses);
-	getExpenses(displayRestaurantExpenses);
-	getExpenses(displayEntertainmentExpenses);
-	getExpenses(displayMedicalExpenses);
-	getExpenses(displayOtherNecessitiesExpenses);
-	getExpenses(displayMiscExpenses);	
+	displayExpTotals();
+	displayGasExpenses();
+	displayGroceryExpenses();
+	displayRestaurantExpenses();
+	displayEntertainmentExpenses();
+	displayMedicalExpenses();
+	displayMiscExpenses();	
 }
 
 $(function() {

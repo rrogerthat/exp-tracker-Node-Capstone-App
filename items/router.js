@@ -16,10 +16,10 @@ router.use(bodyParser.json());
 //display expenses by category
 router.get('/:category', (req, res) => {	//request to /items/:category
 	Expense
-	.find({category: req.params.category})
+	.find({category: req.params.category}) 
 	.then(items => {
 		res.json({
-			expenses: items.map(item => {	//or function(item) {}
+			expenses: items.map(item => {	//or function(item) {}	
 				return item.serialize();	//remember to put 'return'
 			}) //if more than one object put in key, list of obj auto. put inside an array 
 		})
@@ -87,6 +87,11 @@ router.delete('/entry/:id', (req, res) => {
 	.findByIdAndRemove(req.params.id)
 	.then(expense => res.status(204).end()) //if wrong ID, no error msg
 	.catch(err => res.status(500).json({ message: 'Internal server error' }));
+});
+
+//requests to nonexisting endpoints
+router.use('*', function (req, res) {
+  res.status(404).json({ message: 'Not Found' });
 });
 
 

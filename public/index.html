@@ -13,31 +13,28 @@
 	<button type="submit" id="newExp">Add Expense</button> <button type="submit" id="signoutBtn">Log Out</button>
 	<ul class="expense-list">
 		<li>
-			Gas Total:<span class="total-1"></span><button class="detailsBtn-1" type="submit">Show Details</button>
+			Gas Total:<span class="total-1">$0.00</span><button class="detailsBtn-1" type="submit">Show Details</button>
 			<div class="expense-items-1" data-expanded="false"></div>	<!-- Using data attributes -->
 		</li>
 		<li>
-			Restaurants Total:<span class="total-2"></span><button class="detailsBtn-2" type="submit">Show Details</button>
+			Restaurants Total:<span class="total-2">$0.00</span><button class="detailsBtn-2" type="submit">Show Details</button>
 			<div class="expense-items-2" data-expanded="false"></div>
 		</li>
 		<li>
-			Entertainment Total:<span class="total-3"></span><button class="detailsBtn-3" type="submit">Show Details</button>
+			Entertainment Total:<span class="total-3">$0.00</span><button class="detailsBtn-3" type="submit">Show Details</button>
 			<div class="expense-items-3" data-expanded="false"></div>
 		</li>
 		<li>
-			Groceries Total:<span class="total-4"></span><button class="detailsBtn-4" type="submit">Show Details</button>
+			Groceries Total:<span class="total-4">$0.00</span><button class="detailsBtn-4" type="submit">Show Details</button>
 			<div class="expense-items-4" data-expanded="false"></div>
 		</li>
 		<li>
-			Medical Total:<span class="total-5"></span><button class="detailsBtn-5" type="submit">Show Details</button>
+			Medical Total:<span class="total-5">$0.00</span><button class="detailsBtn-5" type="submit">Show Details</button>
 			<div class="expense-items-5" data-expanded="false"></div>
 		</li>
 		<li>
-			Other Necessities Total:<span class="total-6"></span><button class="detailsBtn-6" type="submit">Show Details</button><div class="expense-items-6" data-expanded="false"></div>
-		</li>
-		<li>
-			Misc Total:<span class="total-7"></span><button class="detailsBtn-7" type="submit">Show Details</button>
-			<div class="expense-items-7" data-expanded="false"></div>
+			Misc Total:<span class="total-6">$0.00</span><button class="detailsBtn-6" type="submit">Show Details</button>
+			<div class="expense-items-6" data-expanded="false"></div>
 		</li>
 	</ul>
 </section>
@@ -95,7 +92,6 @@
         		<option value="3">Restaurants</option>
         		<option value="4">Entertainment</option>
         		<option value="5">Medical</option>
-        		<option value="6">Other Necessities</option>
         		<option value="7">Misc</option>
       		</select>
 
@@ -108,7 +104,7 @@
       		<label for="cost">Cost</label>
       		<input type="amount" name="cost" id="cost" placeholder="10.00">	<!-- Follow up with type -->
 
-      		<button type="submit" id="entryBtn">Ok</button>
+      		<button type="submit" id="entryBtn">Ok</button> <!--Use input for form submittal, get value() from inputs -->
       		<button type="submit" id="abortBtn">Cancel</button>
 	</form>
 </section>
