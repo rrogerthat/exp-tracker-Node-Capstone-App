@@ -1,3 +1,5 @@
+let token; //global variable
+
 //To display totals for all expense categories
 function displayExpTotals() {
 	const categoryArr = ['gas', 'restaurants', 'entertainment', 'groceries', 'medical', 'misc'];
@@ -7,38 +9,44 @@ function displayExpTotals() {
 			type: 'GET',
 			url: `/items/${categoryArr[i]}`,	
 			dataType: 'json',
+			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
-				if (data.expenses[0].category === 'gas') {
+				if (data.expenses[0].category == undefined) {
+					console.log(data.expenses[0].category);
+				}
+				const category = data.expenses[0].category;
+
+				if (category === 'gas') {
 					let totalExp = 0;							
 					for (index in data.expenses) {
 						totalExp += Number(data.expenses[index].cost);
 					}
 					$('.total-1').html("$" + totalExp.toFixed(2));	//round to 2 decimals (also converts to string)
-				} else if (data.expenses[0].category === 'restaurants') {
+				} else if (category === 'restaurants') {
 					let totalExp2 = 0;							
 					for (index in data.expenses) {
 						totalExp2 += Number(data.expenses[index].cost);
 					}
 					$('.total-2').html("$" + totalExp2.toFixed(2));
-				} else if (data.expenses[0].category === 'entertainment') {
+				} else if (category === 'entertainment') {
 					let totalExp3 = 0;							
 					for (index in data.expenses) {
 						totalExp3 += Number(data.expenses[index].cost);
 					}
 					$('.total-3').html("$" + totalExp3.toFixed(2));
-				} else if (data.expenses[0].category === 'groceries') {
+				} else if (category === 'groceries') {
 					let totalExp4 = 0;							
 					for (index in data.expenses) {
 						totalExp4 += Number(data.expenses[index].cost);
 					}
 					$('.total-4').html("$" + totalExp4.toFixed(2));
-				} else if (data.expenses[0].category === 'medical') {
+				} else if (category === 'medical') {
 					let totalExp5 = 0;							
 					for (index in data.expenses) {
 						totalExp5 += Number(data.expenses[index].cost);
 					}
 					$('.total-5').html("$" + totalExp5.toFixed(2));
-				} else if (data.expenses[0].category === 'misc') {
+				} else if (category === 'misc') {
 					let totalExp6 = 0;							
 					for (index in data.expenses) {
 						totalExp6 += Number(data.expenses[index].cost);
@@ -59,6 +67,7 @@ function displayGasExpenses() {
 			type: 'GET',
 			url: '/items/gas',
 			dataType: 'json',
+			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
 				if (data.expenses.length === 0 && dataAttr === false) {
 					$('.expense-items-1').html(`<p>Currently no expenditures here.</p>`);
@@ -93,6 +102,7 @@ function displayRestaurantExpenses() {
 			type: 'GET',
 			url: '/items/restaurants',
 			dataType: 'json',
+			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
 				if (data.expenses.length === 0 && dataAttr === false) {
 					$('.expense-items-2').html(`<p>Currently no expenditures here.</p>`);
@@ -127,6 +137,7 @@ function displayEntertainmentExpenses() {
 			type: 'GET',
 			url: '/items/entertainment',
 			dataType: 'json',
+			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
 				if (data.expenses.length === 0 && dataAttr === false) {
 					$('.expense-items-3').html(`<p>Currently no expenditures here.</p>`);
@@ -161,6 +172,7 @@ function displayGroceryExpenses() {
 			type: 'GET',
 			url: '/items/groceries',
 			dataType: 'json',
+			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
 				if (data.expenses.length === 0 && dataAttr === false) {
 					$('.expense-items-4').html(`<p>Currently no expenditures here.</p>`);
@@ -195,6 +207,7 @@ function displayMedicalExpenses() {
 			type: 'GET',
 			url: '/items/medical',
 			dataType: 'json',
+			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
 				if (data.expenses.length === 0 && dataAttr === false) {
 					$('.expense-items-5').html(`<p>Currently no expenditures here.</p>`);
@@ -229,6 +242,7 @@ function displayMiscExpenses() {
 			type: 'GET',
 			url: '/items/misc',
 			dataType: 'json',
+			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
 				if (data.expenses.length === 0 && dataAttr === false) {
 					$('.expense-items-6').html(`<p>Currently no expenditures here.</p>`);
@@ -277,6 +291,7 @@ function enterNewExpense() {
 			contentType: 'application/json',
 			data: JSON.stringify(newEntry),
 			dataType: 'json',
+			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
 				//appends expense thru getAndDisplayExpenses()
 				$('#entry-form').trigger('reset'); 
@@ -347,6 +362,7 @@ function updateExpense() {
 			contentType: 'application/json',
 			data: JSON.stringify(updateEntry),
 			dataType: 'json',
+			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
 				displayExpTotals();
 				$('#update-page').hide(100);
@@ -378,6 +394,7 @@ function deleteExpense() {
 		$.ajax({
 			type:'delete',
 			url: `/items/entry/${id}`,
+			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
 				$(event.target).closest('p').remove();
 				displayExpTotals();
@@ -388,7 +405,6 @@ function deleteExpense() {
 
 //start function when request is made to display expenses (below)
 function getAndDisplayExpenses() {
-	displayExpTotals();
 	displayGasExpenses();
 	displayGroceryExpenses();
 	displayRestaurantExpenses();
@@ -408,14 +424,12 @@ $(function() {
 
 	//to choose to sign up
 	$('#signupBtn').click(function(event) {	//login page
-		event.preventDefault();
 		$('#login-page').hide(100);
 		$('#signup-page').show(300);
 	});
 
 	//cancel sign up
 	$('#cancelBtn').click(function(event) { //sign up page
-		event.preventDefault();
 		$('#signup-form').trigger('reset');
 		$('#signup-page').hide(100);
 		$('#login-page').show(300);
@@ -423,21 +437,20 @@ $(function() {
 
 	//log out
 	$('#signoutBtn').click(function(event) { //homepage page
-		event.preventDefault();
-		$('#home-page').hide(100);
-		$('#login-page').show(300);
+		// $('#home-page').hide(100);
+		// $('#login-page').show(300);
+		$('#username').empty();
+		location.reload();
 	});
 
 	//to open new entry form
 	$('#newExp').click(function(event) { //homepage page
-		event.preventDefault();
 		$('#home-page').hide(100);
 		$('#entry-page').show(300);
 	});
 
 	//cancel new entry
 	$('#abortBtn').click(function(event) { //new entry page
-		event.preventDefault();
 		$('#entry-form').trigger('reset');
 		$('#entry-page').hide(100);
 		$('#home-page').show(300);
@@ -445,7 +458,6 @@ $(function() {
 
 	//cancel update entry
 	$('#abortBtn-2').click(function(event) { //update entry page
-		event.preventDefault();
 		$('#update-form').trigger('reset');
 		$('#update-page').hide(100);
 		$('#home-page').show(300);
@@ -513,7 +525,10 @@ $(function() {
 			success: function(data) {
 				$('#login-form').trigger('reset');
 				$('#login-page').hide(100);
-				$('#home-page').show(300);
+				$('#home-page').show(600);
+				$('#username').html(`Logged in as: ${username}`);
+				token = data.authToken;
+				displayExpTotals();	//run here since token is given after you log in to access this protected data.
 			},
 			error: function() {
 				alert('Please check username and/or password.');

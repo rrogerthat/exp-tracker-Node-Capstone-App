@@ -1,11 +1,12 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs'); //to hash pw's
 
 mongoose.Promise = global.Promise;
 
-const UserSchema = mongoose.Schema({
+const UserSchema = Schema({
   username: {
     type: String,
     required: true,
@@ -16,11 +17,12 @@ const UserSchema = mongoose.Schema({
     required: true
   },
   firstName: {type: String, default: ''},
-  lastName: {type: String, default: ''}
+  lastName: {type: String, default: ''},
 });
 
 UserSchema.methods.serialize = function() {
   return {
+    id: this._id, //to distinguish each user by ID in order to retrieve their data
     username: this.username || '',
     firstName: this.firstName || '',
     lastName: this.lastName || ''

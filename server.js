@@ -28,15 +28,6 @@ app.use('/users', usersRouter); //Requests to /users is redirected to usersRoute
 app.use('/auth', authRouter);  
 app.use('/items', expRouter);
 
-const jwtAuth = passport.authenticate('jwt', { session: false }); //use passport to authenticate rather than cookies.
-
-// A protected endpoint which needs a valid JWT to access it (MOVE TO ROUTER)
-app.get('/protected', jwtAuth, (req, res) => {
-  return res.json({
-    data: 'sampledata'
-  });
-});
-
 // CORS
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');

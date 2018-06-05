@@ -4,9 +4,9 @@ const { Expense } = require('./models');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-// const passport = require('passport');
-// const jwt = require('jsonwebtoken');
-// const jwtAuth = passport.authenticate('jwt', { session: false });
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
 mongoose.Promise = global.Promise;
 
@@ -14,9 +14,9 @@ const router = express.Router();
 router.use(bodyParser.json());
 
 //display expenses by category
-router.get('/:category', (req, res) => {	//request to /items/:category
+router.get('/:category', jwtAuth, (req, res) => {	//request to /items/:category
 	Expense
-	.find({category: req.params.category}) 
+	.find( {category: req.params.category, userId: req.user.id} ) //find data belonging to your ID under serialized User schema
 	.then(items => {
 		res.json({
 			expenses: items.map(item => {	//or function(item) {}	
@@ -31,7 +31,7 @@ router.get('/:category', (req, res) => {	//request to /items/:category
 });
 
 //post an expense
-router.post('/entry', (req, res) => {
+router.post('/entry', jwtAuth, (req, res) => {
 	const requiredFields = ['category', 'description', 'cost'];
 	for (let i = 0; i < requiredFields.length; i++) {
 		const field = requiredFields[i];
@@ -44,6 +44,7 @@ router.post('/entry', (req, res) => {
 
 	Expense
 	.create({
+		userId: req.user.id,	//so user accesses only his data
 		category: req.body.category,
 		date: req.body.date,	//in client.js, make required so no 'null' if empty?
 		description: req.body.description,
@@ -57,7 +58,7 @@ router.post('/entry', (req, res) => {
 });
 
 //to update an expense
-router.put('/update/:id', (req, res) => {
+router.put('/update/:id', jwtAuth, (req, res) => {
 	if (!(req.params.id && req.body.id && req.params.id  === req.body.id)) { //make sure ID's are entered and matched.
 		const message = (
       		`Request path id (${req.params.id}) and request body id ` +
@@ -82,7 +83,7 @@ router.put('/update/:id', (req, res) => {
 });
 
 //to delete an expense
-router.delete('/entry/:id', (req, res) => {
+router.delete('/entry/:id', jwtAuth, (req, res) => {
 	Expense
 	.findByIdAndRemove(req.params.id)
 	.then(expense => res.status(204).end()) //if wrong ID, no error msg

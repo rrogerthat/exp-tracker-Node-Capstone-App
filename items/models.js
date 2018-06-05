@@ -1,12 +1,15 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const expSchema = mongoose.Schema({
+	userId: {type: Schema.Types.ObjectId, ref: 'User'}, //store userId's which belong to each user account
 	category: {type: String, required: true},
 	date: {type: Date, required: true},
 	description: {type: String, required: true},
 	cost: {type: Number, required: true}
+	
 });
 
 expSchema.methods.serialize = function() {	//serialize is self-created method name

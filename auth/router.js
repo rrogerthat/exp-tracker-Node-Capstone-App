@@ -20,7 +20,7 @@ router.use(bodyParser.json());
 // The user provides a username and password to login
 router.post('/login', localAuth, (req, res) => {
   const authToken = createAuthToken(req.user.serialize());
-  res.json({authToken});
+  res.json({authToken});	//used in client.js as part of headers in ajax call to access protected data.
 });
 
 const jwtAuth = passport.authenticate('jwt', {session: false});
