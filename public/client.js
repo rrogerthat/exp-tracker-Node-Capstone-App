@@ -68,8 +68,12 @@ function displayGasExpenses() {
 					$('.detailsBtn-1').text('Hide Details');
 					for (index in data.expenses) {
 						$('.expense-items-1').append(
-						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost} 
-						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+						`<p><span class="expDate">${data.expenses[index].date}</span>
+						<span class="expDescr">${data.expenses[index].description}</span>
+						<span class="expCost">${data.expenses[index].cost}</span> 
+						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
+						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
+						<span class="expId" hidden>${data.expenses[index].created}</span></p>`); //in order to delete
 					}
 					$('.expense-items-1').data().expanded = true; //change data attr to true in order to hide exp details.
 				} else {	//hide exp details and set data attr to false
@@ -79,7 +83,7 @@ function displayGasExpenses() {
 			}
 		})
 	});
-}
+};
 
 function displayRestaurantExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-2", function(event) {
@@ -97,9 +101,13 @@ function displayRestaurantExpenses() {
 				} else if (dataAttr === false) { 
 					$('.detailsBtn-2').text('Hide Details');
 					for (index in data.expenses) {
-						$('.expense-items-2').append(
-						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost} 
-						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+						$('.expense-items-2').append(	//hidden element to target ID to delete in db
+						`<p><span class="expDate">${data.expenses[index].date}</span>
+						<span class="expDescr">${data.expenses[index].description}</span>
+						<span class="expCost">${data.expenses[index].cost}</span>
+						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
+						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
+						<span class="expId" hidden>${data.expenses[index].created}</span></p>`);
 					}
 					$('.expense-items-2').data().expanded = true; 
 				} else {
@@ -109,7 +117,7 @@ function displayRestaurantExpenses() {
 			}
 		})
 	});
-}
+};
 
 function displayEntertainmentExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-3", function(event) {
@@ -128,8 +136,12 @@ function displayEntertainmentExpenses() {
 					$('.detailsBtn-3').text('Hide Details');
 					for (index in data.expenses) {
 						$('.expense-items-3').append(
-						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost}
-						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+						`<p><span class="expDate">${data.expenses[index].date}</span>
+						<span class="expDescr">${data.expenses[index].description}</span>
+						<span class="expCost">${data.expenses[index].cost}</span>
+						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
+						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
+						<span class="expId" hidden>${data.expenses[index].created}</span></p>`);
 					}
 					$('.expense-items-3').data().expanded = true;
 				} else {
@@ -139,7 +151,7 @@ function displayEntertainmentExpenses() {
 			}
 		})
 	});
-}
+};
 
 function displayGroceryExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-4", function(event) {
@@ -158,8 +170,12 @@ function displayGroceryExpenses() {
 					$('.detailsBtn-4').text('Hide Details');
 					for (index in data.expenses) {
 						$('.expense-items-4').append(
-						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost}
-						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+						`<p><span class="expDate">${data.expenses[index].date}</span>
+						<span class="expDescr">${data.expenses[index].description}</span>
+						<span class="expCost">${data.expenses[index].cost}</span>
+						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
+						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
+						<span class="expId" hidden>${data.expenses[index].created}</span></p>`);
 					}
 					$('.expense-items-4').data().expanded = true;
 				} else {
@@ -169,7 +185,7 @@ function displayGroceryExpenses() {
 			}
 		})
 	});
-}
+};
 
 function displayMedicalExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-5", function(event) {
@@ -188,8 +204,12 @@ function displayMedicalExpenses() {
 					$('.detailsBtn-5').text('Hide Details');
 					for (index in data.expenses) {
 						$('.expense-items-5').append(
-						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost}
-						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+						`<p><span class="expDate">${data.expenses[index].date}</span>
+						<span class="expDescr">${data.expenses[index].description}</span>
+						<span class="expCost">${data.expenses[index].cost}</span>
+						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
+						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
+						<span class="expId" hidden>${data.expenses[index].created}</span></p>`);
 					}
 					$('.expense-items-5').data().expanded = true;
 				} else {
@@ -199,7 +219,7 @@ function displayMedicalExpenses() {
 			}
 		})
 	});
-}
+};
 
 function displayMiscExpenses() {
 	$('.expense-list').on("click", ".detailsBtn-6", function(event) {
@@ -218,8 +238,12 @@ function displayMiscExpenses() {
 					$('.detailsBtn-6').text('Hide Details');
 					for (index in data.expenses) {
 						$('.expense-items-6').append(
-						`<p>${data.expenses[index].date} ${data.expenses[index].description} ${data.expenses[index].cost}
-						<button type="submit">Edit</button> <button type="submit">Delete</button></p>`);
+						`<p><span class="expDate">${data.expenses[index].date}</span>
+						<span class="expDescr">${data.expenses[index].description}</span>
+						<span class="expCost">${data.expenses[index].cost}</span>
+						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
+						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
+						<span class="expId" hidden>${data.expenses[index].created}</span></p>`);
 					}
 					$('.expense-items-6').data().expanded = true;
 				} else {
@@ -229,7 +253,138 @@ function displayMiscExpenses() {
 			}
 		})
 	});
-}
+};
+
+function enterNewExpense() {
+	$('#entry-form').submit(function(event) {
+		event.preventDefault();
+		//:selected selector works for <option> elements (selects all elements that are selected)
+		const category = $('#category').find(":selected").text(); 
+		const date = $('#date').val();
+		const description = $('#description').val();
+		const cost = $('#cost').val();
+
+		const newEntry = {
+			category: category,
+			date: date,
+			description: description,
+			cost: cost
+		};
+
+		$.ajax({
+			type: 'POST',
+			url: '/items/entry',
+			contentType: 'application/json',
+			data: JSON.stringify(newEntry),
+			dataType: 'json',
+			success: function(data) {
+				//appends expense thru getAndDisplayExpenses()
+				$('#entry-form').trigger('reset'); 
+				displayExpTotals();
+				$('#entry-page').hide(100);
+				$('#home-page').show(300);
+
+				//close since need need to run getAndDisplayExpenses() for new entry to show up
+				$('.expense-items-1').empty().data().expanded = false;	
+				$('.detailsBtn-1').text('Show Details');
+				$('.expense-items-2').empty().data().expanded = false;
+				$('.detailsBtn-2').text('Show Details');
+				$('.expense-items-3').empty().data().expanded = false;
+				$('.detailsBtn-3').text('Show Details');
+				$('.expense-items-4').empty().data().expanded = false;
+				$('.detailsBtn-4').text('Show Details');
+				$('.expense-items-5').empty().data().expanded = false;
+				$('.detailsBtn-5').text('Show Details');
+				$('.expense-items-6').empty().data().expanded = false;
+				$('.detailsBtn-6').text('Show Details');
+			},
+			error: function(error) {
+				console.log(error);
+			}
+		})
+	});
+};
+
+function updateExpense() {
+	let idCurr;
+	$('li').on('click', '.editBtn', function(event) {
+		// console.log(event.target);	//queing up all the event listeners with event.target
+		idCurr = $(event.target).closest('p').find('.expId').text(); //every edit you clicked gets changed in current session
+		const dateCurr = new Date ($(event.target).closest('p').find('.expDate').text());
+		const descriptionCurr = $(event.target).closest('p').find('.expDescr').text();
+		const costCurr = $(event.target).closest('p').find('.expCost').text();
+		const categoryCurr = $(event.target).closest('p').find('.expCategory').text();
+
+		//target the classes in the form and set equal to dateCurr, etc.
+		$('#selectCat select').val(categoryCurr);
+		$('#date-2').val(dateCurr.toISOString().substr(0, 10)); //date format so it gets placed in input
+		$('#description-2').val(descriptionCurr);
+		$('#cost-2').val(costCurr);
+
+		$('#home-page').hide(100);
+		$('#update-page').show(300);
+	})
+		//put this outside, seperate from above click event so only last edit button is targeted instead of all previous ones
+	$('#update-form').submit(function(event) {	
+	event.preventDefault();
+
+		const newCategory = $('#category-2').find(":selected").text(); 
+		const newDate = $('#date-2').val();
+		const newDescr = $('#description-2').val();
+		const newCost = $('#cost-2').val();
+
+		const updateEntry = {
+			id: idCurr,
+			category: newCategory,
+			date: newDate,
+			description: newDescr,
+			cost: newCost
+		}
+
+		$.ajax({	//need to do form submittal to store in db. Once submitted, backend will display to frontend.
+			type: 'PUT',
+			url:`/items/update/${idCurr}`,
+			contentType: 'application/json',
+			data: JSON.stringify(updateEntry),
+			dataType: 'json',
+			success: function(data) {
+				displayExpTotals();
+				$('#update-page').hide(100);
+				$('#home-page').show(300);
+				$('#update-form').trigger('reset');
+
+				//close since need need to run getAndDisplayExpenses() for update entry to show up
+				$('.expense-items-1').empty().data().expanded = false;	
+				$('.detailsBtn-1').text('Show Details');
+				$('.expense-items-2').empty().data().expanded = false;
+				$('.detailsBtn-2').text('Show Details');
+				$('.expense-items-3').empty().data().expanded = false;
+				$('.detailsBtn-3').text('Show Details');
+				$('.expense-items-4').empty().data().expanded = false;
+				$('.detailsBtn-4').text('Show Details');
+				$('.expense-items-5').empty().data().expanded = false;
+				$('.detailsBtn-5').text('Show Details');
+				$('.expense-items-6').empty().data().expanded = false;
+				$('.detailsBtn-6').text('Show Details');
+			}
+		})
+	});
+};
+
+function deleteExpense() {
+	$('li').on('click', '.delBtn', function(event) {
+		const id = $(event.target).closest('p').find('.expId').text(); //.closest doesn't require selector to already be in DOM?
+													   //.expId still inside <p>
+		$.ajax({
+			type:'delete',
+			url: `/items/entry/${id}`,
+			success: function(data) {
+				$(event.target).closest('p').remove();
+				displayExpTotals();
+			}
+		})
+	})
+};
 
 //start function when request is made to display expenses (below)
 function getAndDisplayExpenses() {
@@ -244,6 +399,10 @@ function getAndDisplayExpenses() {
 
 $(function() {
 	getAndDisplayExpenses();
+	enterNewExpense();
+	updateExpense();
+	deleteExpense();
+
 	$('section').hide();
 	$('#login-page').show();
 
@@ -257,6 +416,7 @@ $(function() {
 	//cancel sign up
 	$('#cancelBtn').click(function(event) { //sign up page
 		event.preventDefault();
+		$('#signup-form').trigger('reset');
 		$('#signup-page').hide(100);
 		$('#login-page').show(300);
 	});
@@ -268,24 +428,26 @@ $(function() {
 		$('#login-page').show(300);
 	});
 
-	//new exp entry
+	//to open new entry form
 	$('#newExp').click(function(event) { //homepage page
 		event.preventDefault();
 		$('#home-page').hide(100);
 		$('#entry-page').show(300);
 	});
 
-	//exp entry entered
-	$('#entryBtn').click(function(event) { //new entry page
+	//cancel new entry
+	$('#abortBtn').click(function(event) { //new entry page
 		event.preventDefault();
+		$('#entry-form').trigger('reset');
 		$('#entry-page').hide(100);
 		$('#home-page').show(300);
 	});
 
-	//cancel new entry
-	$('#abortBtn').click(function(event) { //new entry page
+	//cancel update entry
+	$('#abortBtn-2').click(function(event) { //update entry page
 		event.preventDefault();
-		$('#entry-page').hide(100);
+		$('#update-form').trigger('reset');
+		$('#update-page').hide(100);
 		$('#home-page').show(300);
 	});
 

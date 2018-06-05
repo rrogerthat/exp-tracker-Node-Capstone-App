@@ -45,7 +45,7 @@ router.post('/entry', (req, res) => {
 	Expense
 	.create({
 		category: req.body.category,
-		date: req.body.date,	//in client.js, make  req date format xx/xx/xxxx. Also make required so no 'null' if empty?
+		date: req.body.date,	//in client.js, make required so no 'null' if empty?
 		description: req.body.description,
 		cost: req.body.cost
 	})

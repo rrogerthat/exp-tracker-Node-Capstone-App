@@ -1,5 +1,14 @@
 body {
   box-sizing: border-box;
+  font-family: 'Abel', sans-serif;	
+}
+
+button, input {
+	font-family: 'Abel', sans-serif;	
+}
+
+.delBtn {
+	margin-left: 10px;
 }
 
 #signoutBtn {

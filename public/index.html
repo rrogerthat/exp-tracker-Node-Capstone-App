@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Expense Tracker</title>
 	<link rel="stylesheet" href="main.css">
+	<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
 </head>
 <body>
 	<h1>Expense Tracker</h1>
 
-<section id="home-page"> <li><a href="/">Go Home</a></li> <!--Sample route-->
-	<button type="submit" id="newExp">Add Expense</button> <button type="submit" id="signoutBtn">Log Out</button>
+<section id="home-page"> <!-- <li><a href="/">Go Home</a></li> --> <!--Sample route-->
+	<button id="newExp" type="submit">Add Expense</button> <button id="signoutBtn" type="submit">Log Out</button>
 	<ul class="expense-list">
 		<li>
 			Gas Total:<span class="total-1">$0.00</span><button class="detailsBtn-1" type="submit">Show Details</button>
@@ -46,13 +47,13 @@
 			<legend>Login Info</legend>
 
 			<label for="login-name">Username</label>
-			<input placeholder="johndoe111" type="text" name="login-name" id="login-name" required>
+			<input id="login-name" placeholder="johndoe111" type="text" name="login-name" required>
 
 			<label for="password">Password</label>
-      		<input placeholder="123456" type="password" name="password" id="login-pw" required><br>
+      		<input id="login-pw" placeholder="123456" type="password" name="password" required><br>
 
       		<input id="loginBtn" type="submit" value="Sign In">
-      		<button type="submit" id="signupBtn">Register</button>
+      		<button id="signupBtn" type="submit">Register</button>
 	</form>
 </section>
 
@@ -63,49 +64,81 @@
 			<legend>User Info</legend>
 
 			<label for="first-name">First name</label>
-     		<input placeholder="John" type="text" name="first-name" id="firstname-reg" required>
+     		<input id="firstname-reg" placeholder="John" type="text" name="first-name" required>
 
      		<label for="last-name">Last name</label>
-      		<input placeholder="Doe" type="text" name="last-name" id="lastname-reg">
+      		<input id="lastname-reg" placeholder="Doe" type="text" name="last-name">
 
 			<label for="user-name">Username (Cannot start or end with spaces)</label>
-			<input placeholder="johndoe111" type="text" name="user-name" id="username-reg" required>
+			<input id="username-reg" placeholder="johndoe111" type="text" name="user-name" required>
 
 			<label for="password">Password (Must be between 6 to 72 characters | Cannot start or end with spaces)</label>
-      		<input placeholder="123456" type="password" name="password" id="password-reg" required><br>
+      		<input id="password-reg" placeholder="123456" type="password" name="password" required><br>
 
       		<input id="regBtn" type="submit" value="Register"> <!--changed from button to input for form submittal to process-->
-      		<button type="close" id="cancelBtn">Cancel</button>
+      		<button id="cancelBtn" type="close">Cancel</button>
 	</form>	
 </section>
 
 <section id="entry-page">
-	<form>
+	<form id ="entry-form">
 		<h2>Enter Expense</h2>
 		<fieldset name="expense-info">
 			<legend>Expense</legend>
 
 			<label for="category">Choose Category</label>
-			<select name="category" required>
-				<option value="1">Gas</option>
-        		<option value="2">Groceries</option>
-        		<option value="3">Restaurants</option>
-        		<option value="4">Entertainment</option>
-        		<option value="5">Medical</option>
-        		<option value="7">Misc</option>
+			<select id="category" name="category" required>
+				<option value="1">gas</option>
+        		<option value="2">groceries</option>
+        		<option value="3">restaurants</option>
+        		<option value="4">entertainment</option>
+        		<option value="5">medical</option>
+        		<option value="7">misc</option>
       		</select>
 
 			<label for="date">Date</label>
-			<input placeholder="12/01/2017" type="date" name="date" id="date">
+			<input id="date" placeholder="12/01/2017" type="date" name="date" required>
 
 			<label for="description">Description</label>
-      		<input type="text" name="description" id="description" placeholder="Abcd">
+      		<input id="description" type="text" name="description" placeholder="Abcd" required>
 
       		<label for="cost">Cost</label>
-      		<input type="amount" name="cost" id="cost" placeholder="10.00">	<!-- Follow up with type -->
+      		<input id="cost" type="number" name="cost" placeholder="10.00" step=".01" required><br>	<!-- Follow up with type -->
 
-      		<button type="submit" id="entryBtn">Ok</button> <!--Use input for form submittal, get value() from inputs -->
-      		<button type="submit" id="abortBtn">Cancel</button>
+      		<input id="entryBtn" type="submit" value="Submit"> <!--Use input for form submittal, get value() from inputs -->
+      		<button id="abortBtn" type="submit">Cancel</button>
+	</form>
+</section>
+
+<section id="update-page">
+	<form id ="update-form">
+		<h2>Update Expense</h2>
+		<fieldset name="expense-info">
+			<legend>Expense</legend>
+
+			<label for="category">Choose Category</label>
+			<div id="selectCat">
+				<select id="category-2" name="category" required>
+					<option value="gas">gas</option>
+	        		<option value="groceries">groceries</option>
+	        		<option value="restaurants">restaurants</option>
+	        		<option value="entertainment">entertainment</option>
+	        		<option value="medical">medical</option>
+	        		<option value="misc">misc</option>
+	      		</select>
+      		</div>
+
+			<label for="date">Date</label>
+			<input id="date-2" placeholder="12/01/2017" type="date" name="date" required>
+
+			<label for="description">Description</label>
+      		<input id="description-2" type="text" name="description" placeholder="Abcd" required>
+
+      		<label for="cost">Cost</label>
+      		<input id="cost-2" type="number" name="cost" placeholder="10.00" step=".01" required><br>
+
+      		<input id="entryBtn-2" type="submit" value="Submit">
+      		<button id="abortBtn-2" type="submit">Cancel</button>
 	</form>
 </section>
 	
