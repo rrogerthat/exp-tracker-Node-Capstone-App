@@ -84,7 +84,6 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
   });
 
   describe('GET endpoint', function() {
-
     //sample test
   	it('return status code 200 and HTML on GET', function() {
       let res;
@@ -99,12 +98,13 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
   	});
 
     //test get request for all categories using for loop
-    const categoryArr = ['gas', 'restaurants', 'entertainment', 'groceries', 'medical', 'misc'];
-    for (i = 0; i < categoryArr.length; i++) {
+    // const categoryArr = ['gas', 'restaurants', 'entertainment', 'groceries', 'medical', 'misc'];
+
+    // for (i = 0; i < categoryArr.length; i++) {
       it('list expenses based on category on GET', function() {
         let res;
         
-        return chai.request(app)
+        return chai.request(app)    //${categoryArr[i]}
           .get(`/items/gas`)
           .set('Authorization', `Bearer ${token_test}`)
           .then(function(_res) {
@@ -123,8 +123,8 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
             return Expense.findById(resExpense.created); //find in db using id from response body (created).
           })
           .then(function(expense) {
-            let date = new Date(expense.date);  //date in db is not formatted the same as in res.body so need to change
-            let newDateFormat = (("0" + (date.getMonth() + 1)).slice(-2)) + '/' + ("0" + date.getDate()).slice(-2) + '/' +  date.getFullYear();
+            const date = new Date(expense.date);  //date in db is not formatted the same as in res.body so need to change
+            const newDateFormat = (("0" + (date.getMonth() + 1)).slice(-2)) + '/' + ("0" + date.getDate()).slice(-2) + '/' +  date.getFullYear();
 
             expect(resExpense.created).to.equal(expense.id); //compare response body to db
             expect(resExpense.category).to.equal(expense.category);
@@ -133,7 +133,49 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
             expect(resExpense.cost).to.contain(expense.cost);
           });
       });
-    }
+    // }
+  });
+  
+  describe('POST endpoint', function() {
+
+    it('should add a new restaurant', function() {
+      const newExpense = generateExpenseData();
+
+      return chai.request(app)
+      .post('/items/entry')
+      .set('Authorization', `Bearer ${token_test}`)
+      .send(newExpense)
+        .then(function(res) {
+          const date = new Date(newExpense.date);
+          const newDateFormat = (("0" + (date.getMonth() + 1)).slice(-2)) + '/' + ("0" + date.getDate()).slice(-2) + '/' +  date.getFullYear();
+
+          expect(res).to.have.status(201);
+          expect(res).to.be.json;
+          expect(res.body).to.be.a('object');
+          expect(res.body).to.include.keys(
+            'created', 'category', 'date', 'description', 'cost');
+          expect(res.body.created).to.not.be.null;
+          expect(res.body.category).to.equal(newExpense.category);
+          expect(res.body.date).to.equal(newDateFormat);
+          expect(res.body.description).to.equal(newExpense.description);
+          expect(res.body.cost).to.equal(newExpense.cost);
+          return Expense.findById(res.body.created);
+        })
+        .then(function(expense) {
+          const olddate = new Date(newExpense.date);
+          const newDateFormat = (("0" + (olddate.getMonth() + 1)).slice(-2)) + '/' + ("0" + olddate.getDate()).slice(-2) + '/' +  olddate.getFullYear();
+
+          const firstdate = new Date(expense.date);
+          const secDateFormat = (("0" + (firstdate.getMonth() + 1)).slice(-2)) + '/' + ("0" + firstdate.getDate()).slice(-2) + '/' +  firstdate.getFullYear();
+
+          expect(expense.category).to.equal(newExpense.category);
+          expect(secDateFormat).to.equal(newDateFormat);
+          expect(expense.description).to.equal(newExpense.description);
+          expect(Number.parseFloat(expense.cost).toFixed(2)).to.equal(newExpense.cost);
+        });
+    });
   });
 
+
 });
+
