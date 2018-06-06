@@ -1,6 +1,8 @@
 body {
   box-sizing: border-box;
   font-family: 'Abel', sans-serif;	
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 button, input {
@@ -10,6 +12,28 @@ button, input {
 #username {
 	margin-top: -25px;
 	margin-bottom: 20px;
+}
+
+.totalTitle {				/* For alignment. Use a table next time */
+	display: inline-block;
+	margin-left: 0;
+	width: 130px;
+}
+
+.totalNum {
+	display: inline-block;
+	width: 100px;
+}
+
+.expDate {			/* So dates will align with total title above them */
+    display: inline-block;
+    margin-left: 0;
+    width: 115px;
+}
+
+.expDescr {					/* mobile responsive FIRST! */
+	display: inline-block;
+	/*min-width: 200px;*/
 }
 
 .delBtn {

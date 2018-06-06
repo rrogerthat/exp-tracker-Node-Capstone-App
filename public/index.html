@@ -15,27 +15,27 @@
 	<button id="newExp" type="submit">Add Expense</button> <button id="signoutBtn" type="submit">Log Out</button>
 	<ul class="expense-list">
 		<li>
-			Gas Total:<span class="total-1">$0.00</span><button class="detailsBtn-1" type="submit">Show Details</button>
+			<span class="totalTitle">Gas Total:</span><span class="totalNum total-1">$0.00</span><button class="detailsBtn-1" type="submit">Show Details</button>
 			<div class="expense-items-1" data-expanded="false"></div>	<!-- Using data attributes -->
 		</li>
 		<li>
-			Restaurants Total:<span class="total-2">$0.00</span><button class="detailsBtn-2" type="submit">Show Details</button>
+			<span class="totalTitle">Restaurants Total:</span><span class="totalNum total-2">$0.00</span><button class="detailsBtn-2" type="submit">Show Details</button>
 			<div class="expense-items-2" data-expanded="false"></div>
 		</li>
 		<li>
-			Entertainment Total:<span class="total-3">$0.00</span><button class="detailsBtn-3" type="submit">Show Details</button>
+			<span class="totalTitle">Entertainment Total:</span><span class="totalNum total-3">$0.00</span><button class="detailsBtn-3" type="submit">Show Details</button>
 			<div class="expense-items-3" data-expanded="false"></div>
 		</li>
 		<li>
-			Groceries Total:<span class="total-4">$0.00</span><button class="detailsBtn-4" type="submit">Show Details</button>
+			<span class="totalTitle">Groceries Total:</span><span class="totalNum total-4">$0.00</span><button class="detailsBtn-4" type="submit">Show Details</button>
 			<div class="expense-items-4" data-expanded="false"></div>
 		</li>
 		<li>
-			Medical Total:<span class="total-5">$0.00</span><button class="detailsBtn-5" type="submit">Show Details</button>
+			<span class="totalTitle">Medical Total:</span><span class="totalNum total-5">$0.00</span><button class="detailsBtn-5" type="submit">Show Details</button>
 			<div class="expense-items-5" data-expanded="false"></div>
 		</li>
 		<li>
-			Misc Total:<span class="total-6">$0.00</span><button class="detailsBtn-6" type="submit">Show Details</button>
+			<span class="totalTitle">Misc Total:</span><span class="totalNum total-6">$0.00</span><button class="detailsBtn-6" type="submit">Show Details</button>
 			<div class="expense-items-6" data-expanded="false"></div>
 		</li>
 	</ul>
@@ -102,10 +102,10 @@
 			<input id="date" placeholder="12/01/2017" type="date" name="date" required>
 
 			<label for="description">Description</label>
-      		<input id="description" type="text" name="description" placeholder="Abcd" required>
+      		<input id="description" type="text" name="description" placeholder="Abcd" maxlength="50" required>
 
       		<label for="cost">Cost</label>
-      		<input id="cost" type="number" name="cost" placeholder="10.00" step=".01" required><br>	<!-- Follow up with type -->
+      		<input id="cost" type="number" name="cost" placeholder="10.00" step=".01" max="100000000" required><br>
 
       		<input id="entryBtn" type="submit" value="Submit"> <!--Use input for form submittal, get value() from inputs -->
       		<button id="abortBtn" type="submit">Cancel</button>
@@ -134,10 +134,10 @@
 			<input id="date-2" placeholder="12/01/2017" type="date" name="date" required>
 
 			<label for="description">Description</label>
-      		<input id="description-2" type="text" name="description" placeholder="Abcd" required>
+      		<input id="description-2" type="text" name="description" placeholder="Abcd" maxlength="50" required>
 
       		<label for="cost">Cost</label>
-      		<input id="cost-2" type="number" name="cost" placeholder="10.00" step=".01" required><br>
+      		<input id="cost-2" type="number" name="cost" placeholder="10.00" step=".01" max="100000000" required><br>
 
       		<input id="entryBtn-2" type="submit" value="Submit">
       		<button id="abortBtn-2" type="submit">Cancel</button>

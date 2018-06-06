@@ -20,38 +20,38 @@ function displayExpTotals() {
 					let totalExp = 0;							
 					for (index in data.expenses) {
 						totalExp += Number(data.expenses[index].cost);
-					}
-					$('.total-1').html("$" + totalExp.toFixed(2));	//round to 2 decimals (also converts to string)
+					}								  //formats to contain commas and 2 decimals
+					$('.total-1').html("$" + totalExp.toLocaleString(undefined, { minimumFractionDigits: 2 }));
 				} else if (category === 'restaurants') {
 					let totalExp2 = 0;							
 					for (index in data.expenses) {
 						totalExp2 += Number(data.expenses[index].cost);
 					}
-					$('.total-2').html("$" + totalExp2.toFixed(2));
+					$('.total-2').html("$" + totalExp2.toLocaleString(undefined, { minimumFractionDigits: 2 }));
 				} else if (category === 'entertainment') {
 					let totalExp3 = 0;							
 					for (index in data.expenses) {
 						totalExp3 += Number(data.expenses[index].cost);
 					}
-					$('.total-3').html("$" + totalExp3.toFixed(2));
+					$('.total-3').html("$" + totalExp3.toLocaleString(undefined, { minimumFractionDigits: 2 })); 
 				} else if (category === 'groceries') {
 					let totalExp4 = 0;							
 					for (index in data.expenses) {
 						totalExp4 += Number(data.expenses[index].cost);
 					}
-					$('.total-4').html("$" + totalExp4.toFixed(2));
+					$('.total-4').html("$" + totalExp4.toLocaleString(undefined, { minimumFractionDigits: 2 }));
 				} else if (category === 'medical') {
 					let totalExp5 = 0;							
 					for (index in data.expenses) {
 						totalExp5 += Number(data.expenses[index].cost);
 					}
-					$('.total-5').html("$" + totalExp5.toFixed(2));
+					$('.total-5').html("$" + totalExp5.toLocaleString(undefined, { minimumFractionDigits: 2 }));
 				} else if (category === 'misc') {
 					let totalExp6 = 0;							
 					for (index in data.expenses) {
 						totalExp6 += Number(data.expenses[index].cost);
 					}
-					$('.total-6').html("$" + totalExp6.toFixed(2));
+					$('.total-6').html("$" + totalExp6.toLocaleString(undefined, { minimumFractionDigits: 2 }));
 				} 
 			}
 		})
