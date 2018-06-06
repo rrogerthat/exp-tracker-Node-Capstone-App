@@ -40,7 +40,7 @@ const localStrategy = new LocalStrategy((username, password, callback) => { //us
 
 const jwtStrategy = new JwtStrategy(  //Object {}, then function  //using passport-jwt module (user accessing protected route)
   {
-    secretOrKey: 'Roger',  //This strategy uses this secret to decode token.
+    secretOrKey: JWT_SECRET,  //This strategy uses this secret to decode token.
     // Look for the JWT as a Bearer auth header
     jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'), //This strategy retrieves token from request's Header.
     // Only allow HS256 tokens - the same as the ones we issue  //In Postman, put in Headers: Authorization: Bearer <token>
