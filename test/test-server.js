@@ -17,17 +17,11 @@ function seedExpenseData() {
 	console.info('seeding expense data');
 	const seedData = [];
 
-  for (let i=1; i<=10; i++) {
+  for (i = 0; i <5; i++) { //total 30 entries
     seedData.push(generateExpenseData());
   }
 
   return Expense.insertMany(seedData);
-}
-
-function generateCategoryName() {
-  const category = [
-    'gas', 'restaurants', 'entertainment', 'groceries', 'medical', 'misc'];
-  return category[Math.floor(Math.random() * category.length)];
 }
 
 function generateDescription() {
@@ -38,11 +32,46 @@ function generateDescription() {
 function generateExpenseData() {
 	return {
 		userId: userId,	//variable created at login under beforeEach
-		category: generateCategoryName(),
+		category: 'gas',
 		date: faker.date.past(),
 		description: generateDescription(),
 		cost: faker.commerce.price()
-	};
+	},
+  {
+    userId: userId, 
+    category: 'restaurants',
+    date: faker.date.past(),
+    description: generateDescription(),
+    cost: faker.commerce.price()
+  },
+  {
+    userId: userId, 
+    category: 'entertainment',
+    date: faker.date.past(),
+    description: generateDescription(),
+    cost: faker.commerce.price()
+  },
+  {
+    userId: userId, 
+    category: 'groceries',
+    date: faker.date.past(),
+    description: generateDescription(),
+    cost: faker.commerce.price()
+  },
+  {
+    userId: userId, 
+    category: 'medical',
+    date: faker.date.past(),
+    description: generateDescription(),
+    cost: faker.commerce.price()
+  },
+  {
+    userId: userId, 
+    category: 'misc',
+    date: faker.date.past(),
+    description: generateDescription(),
+    cost: faker.commerce.price()
+  }
 }
 
 function tearDownDb() {
@@ -84,28 +113,15 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
   });
 
   describe('GET endpoint', function() {
-    //sample test
-  	it('return status code 200 and HTML on GET', function() {
-      let res;
-  		return chai.request(app)
-  			.get('/')
-  			.set('Authorization', `Bearer ${token_test}`)
-  			.then(function(_res) {
-  				res = _res;
-  				expect(res).to.have.status(200);
-  				expect(res).to.be.html;
-  			});
-  	});
-
     //test get request for all categories using for loop
-    // const categoryArr = ['gas', 'restaurants', 'entertainment', 'groceries', 'medical', 'misc'];
+    const categoryArr = ['gas', 'restaurants', 'entertainment', 'groceries', 'medical', 'misc'];
 
-    // for (i = 0; i < categoryArr.length; i++) {
+    for (i = 0; i < categoryArr.length; i++) {
       it('list expenses based on category on GET', function() {
         let res;
         
         return chai.request(app)    //${categoryArr[i]}
-          .get(`/items/gas`)
+          .get(`/items/${categoryArr[i]}`)
           .set('Authorization', `Bearer ${token_test}`)
           .then(function(_res) {
             res = _res;
@@ -133,12 +149,11 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
             expect(resExpense.cost).to.contain(expense.cost);
           });
       });
-    // }
+    }
   });
   
   describe('POST endpoint', function() {
-
-    it('should add a new restaurant', function() {
+    it('should add a new expense', function() {
       const newExpense = generateExpenseData();
 
       return chai.request(app)
@@ -176,6 +191,33 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
     });
   });
 
+  describe('PUT endpoint', function() {
+    it('should update fields you send over', function() {
+      const updateData = {
+        description: 'new car',
+        category: 'misc'
+      };
+
+      return Expense
+        .findOne()
+        .then(function(expense) {
+          updateData.id = expense.id;
+          return chai.request(app)
+            .put(`/items/update/${expense.id}`)
+            .set('Authorization', `Bearer ${token_test}`)
+            .send(updateData);
+        })
+        .then(function(res) {
+          expect(res).to.have.status(200);
+
+          return Expense.findById(updateData.id);
+        })
+        .then(function(expense) {
+          expect(expense.description).to.equal(updateData.description);
+          expect(expense.category).to.equal(updateData.category);
+        });
+    });
+  });
 
 });
 
