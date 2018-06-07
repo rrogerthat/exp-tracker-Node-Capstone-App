@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');	//don't need for posts to /users to w
 
 const { router: usersRouter } = require('./users'); //rename router to usersRouter (Obj destr assignment)
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+const { router: expRouter } = require('./items/router');
 
 //config.js is where we control constants for entire app like PORT and DATABASE_URL
 const { PORT, DATABASE_URL } = require('./config'); 
@@ -25,15 +26,7 @@ passport.use(jwtStrategy);
 
 app.use('/users', usersRouter); //Requests to /users is redirected to usersRouter (renamed from router)
 app.use('/auth', authRouter);  
-
-const jwtAuth = passport.authenticate('jwt', { session: false }); //use passport to authenticate rather than cookies.
-
-// A protected endpoint which needs a valid JWT to access it
-app.get('/protected', jwtAuth, (req, res) => {
-  return res.json({
-    data: 'sampledata'
-  });
-});
+app.use('/items', expRouter);
 
 // CORS
 app.use(function (req, res, next) {

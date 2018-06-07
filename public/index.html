@@ -5,39 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Expense Tracker</title>
 	<link rel="stylesheet" href="main.css">
+	<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
 </head>
 <body>
 	<h1>Expense Tracker</h1>
+	<div id="username"></div>
 
-<section id="home-page"> <li><a href="/">Go Home</a></li> <!--Sample route-->
-	<button type="submit" id="newExp">Add Expense</button> <button type="submit" id="signoutBtn">Log Out</button>
+<section id="home-page"> <!-- <li><a href="/">Go Home</a></li> --> <!--Sample route-->
+	<button id="newExp" type="submit">Add Expense</button> <button id="signoutBtn" type="submit">Log Out</button>
 	<ul class="expense-list">
 		<li>
-			Gas Total:<span class="total-1"></span><button class="detailsBtn-1" type="submit">Show Details</button>
+			<span class="totalTitle">Gas Total:</span><span class="totalNum total-1">$0.00</span><button class="detailsBtn-1" type="submit">Show Details</button>
 			<div class="expense-items-1" data-expanded="false"></div>	<!-- Using data attributes -->
 		</li>
 		<li>
-			Restaurants Total:<span class="total-2"></span><button class="detailsBtn-2" type="submit">Show Details</button>
+			<span class="totalTitle">Restaurants Total:</span><span class="totalNum total-2">$0.00</span><button class="detailsBtn-2" type="submit">Show Details</button>
 			<div class="expense-items-2" data-expanded="false"></div>
 		</li>
 		<li>
-			Entertainment Total:<span class="total-3"></span><button class="detailsBtn-3" type="submit">Show Details</button>
+			<span class="totalTitle">Entertainment Total:</span><span class="totalNum total-3">$0.00</span><button class="detailsBtn-3" type="submit">Show Details</button>
 			<div class="expense-items-3" data-expanded="false"></div>
 		</li>
 		<li>
-			Groceries Total:<span class="total-4"></span><button class="detailsBtn-4" type="submit">Show Details</button>
+			<span class="totalTitle">Groceries Total:</span><span class="totalNum total-4">$0.00</span><button class="detailsBtn-4" type="submit">Show Details</button>
 			<div class="expense-items-4" data-expanded="false"></div>
 		</li>
 		<li>
-			Medical Total:<span class="total-5"></span><button class="detailsBtn-5" type="submit">Show Details</button>
+			<span class="totalTitle">Medical Total:</span><span class="totalNum total-5">$0.00</span><button class="detailsBtn-5" type="submit">Show Details</button>
 			<div class="expense-items-5" data-expanded="false"></div>
 		</li>
 		<li>
-			Other Necessities Total:<span class="total-6"></span><button class="detailsBtn-6" type="submit">Show Details</button><div class="expense-items-6" data-expanded="false"></div>
-		</li>
-		<li>
-			Misc Total:<span class="total-7"></span><button class="detailsBtn-7" type="submit">Show Details</button>
-			<div class="expense-items-7" data-expanded="false"></div>
+			<span class="totalTitle">Misc Total:</span><span class="totalNum total-6">$0.00</span><button class="detailsBtn-6" type="submit">Show Details</button>
+			<div class="expense-items-6" data-expanded="false"></div>
 		</li>
 	</ul>
 </section>
@@ -49,14 +48,15 @@
 			<legend>Login Info</legend>
 
 			<label for="login-name">Username</label>
-			<input placeholder="johndoe111" type="text" name="login-name" id="login-name" required>
+			<input id="login-name" placeholder="johndoe111" type="text" name="login-name" required>
 
 			<label for="password">Password</label>
-      		<input placeholder="123456" type="password" name="password" id="login-pw" required><br>
+      		<input id="login-pw" placeholder="123456" type="password" name="password" required><br>
 
       		<input id="loginBtn" type="submit" value="Sign In">
-      		<button type="submit" id="signupBtn">Register</button>
-	</form>
+      		<button id="signupBtn" type="submit">Register</button>
+	</form><br>
+	<footer>DEMO LOGIN ACCOUNT - username: roger123 password: 123456</footer>
 </section>
 
 <section id="signup-page">
@@ -66,50 +66,81 @@
 			<legend>User Info</legend>
 
 			<label for="first-name">First name</label>
-     		<input placeholder="John" type="text" name="first-name" id="firstname-reg" required>
+     		<input id="firstname-reg" placeholder="John" type="text" name="first-name" required>
 
      		<label for="last-name">Last name</label>
-      		<input placeholder="Doe" type="text" name="last-name" id="lastname-reg">
+      		<input id="lastname-reg" placeholder="Doe" type="text" name="last-name">
 
 			<label for="user-name">Username (Cannot start or end with spaces)</label>
-			<input placeholder="johndoe111" type="text" name="user-name" id="username-reg" required>
+			<input id="username-reg" placeholder="johndoe111" type="text" name="user-name" required>
 
 			<label for="password">Password (Must be between 6 to 72 characters | Cannot start or end with spaces)</label>
-      		<input placeholder="123456" type="password" name="password" id="password-reg" required><br>
+      		<input id="password-reg" placeholder="123456" type="password" name="password" required><br>
 
       		<input id="regBtn" type="submit" value="Register"> <!--changed from button to input for form submittal to process-->
-      		<button type="close" id="cancelBtn">Cancel</button>
+      		<button id="cancelBtn" type="close">Cancel</button>
 	</form>	
 </section>
 
 <section id="entry-page">
-	<form>
+	<form id ="entry-form">
 		<h2>Enter Expense</h2>
 		<fieldset name="expense-info">
 			<legend>Expense</legend>
 
 			<label for="category">Choose Category</label>
-			<select name="category" required>
-				<option value="1">Gas</option>
-        		<option value="2">Groceries</option>
-        		<option value="3">Restaurants</option>
-        		<option value="4">Entertainment</option>
-        		<option value="5">Medical</option>
-        		<option value="6">Other Necessities</option>
-        		<option value="7">Misc</option>
+			<select id="category" name="category" required>
+				<option value="1">gas</option>
+        		<option value="2">groceries</option>
+        		<option value="3">restaurants</option>
+        		<option value="4">entertainment</option>
+        		<option value="5">medical</option>
+        		<option value="7">misc</option>
       		</select>
 
 			<label for="date">Date</label>
-			<input placeholder="12/01/2017" type="date" name="date" id="date">
+			<input id="date" placeholder="12/01/2017" type="date" name="date" required>
 
 			<label for="description">Description</label>
-      		<input type="text" name="description" id="description" placeholder="Abcd">
+      		<input id="description" type="text" name="description" placeholder="Abcd" maxlength="50" required>
 
       		<label for="cost">Cost</label>
-      		<input type="amount" name="cost" id="cost" placeholder="10.00">	<!-- Follow up with type -->
+      		<input id="cost" type="number" name="cost" placeholder="10.00" step=".01" max="100000000" required><br>
 
-      		<button type="submit" id="entryBtn">Ok</button>
-      		<button type="submit" id="abortBtn">Cancel</button>
+      		<input id="entryBtn" type="submit" value="Submit"> <!--Use input for form submittal, get value() from inputs -->
+      		<button id="abortBtn" type="submit">Cancel</button>
+	</form>
+</section>
+
+<section id="update-page">
+	<form id ="update-form">
+		<h2>Update Expense</h2>
+		<fieldset name="expense-info">
+			<legend>Expense</legend>
+
+			<label for="category">Choose Category</label>
+			<div id="selectCat">
+				<select id="category-2" name="category" required>
+					<option value="gas">gas</option>
+	        		<option value="groceries">groceries</option>
+	        		<option value="restaurants">restaurants</option>
+	        		<option value="entertainment">entertainment</option>
+	        		<option value="medical">medical</option>
+	        		<option value="misc">misc</option>
+	      		</select>
+      		</div>
+
+			<label for="date">Date</label>
+			<input id="date-2" placeholder="12/01/2017" type="date" name="date" required>
+
+			<label for="description">Description</label>
+      		<input id="description-2" type="text" name="description" placeholder="Abcd" maxlength="50" required>
+
+      		<label for="cost">Cost</label>
+      		<input id="cost-2" type="number" name="cost" placeholder="10.00" step=".01" max="100000000" required><br>
+
+      		<input id="entryBtn-2" type="submit" value="Submit">
+      		<button id="abortBtn-2" type="submit">Cancel</button>
 	</form>
 </section>
 	

@@ -28,7 +28,7 @@ const localStrategy = new LocalStrategy((username, password, callback) => { //us
           message: 'Incorrect username or password'
         });
       }
-      return callback(null, user);  //null is no errors? If p/w valid, user obj added to req obj at req.user.
+      return callback(null, user);  //null for no errors. If p/w valid, user obj added to req obj at req.user.
     })
     .catch(err => {
       if (err.reason === 'LoginError') {
