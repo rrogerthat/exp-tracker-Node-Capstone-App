@@ -219,5 +219,28 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
     });
   });
 
+  describe('DELETE endpoint', function() {
+    it('delete an expense by id', function() {
+
+      let expense;
+
+      return Expense
+        .findOne()
+        .then(function(_expense) {
+          expense = _expense;
+          return chai.request(app)
+          .delete(`/items/entry/${expense.id}`)
+          .set('Authorization', `Bearer ${token_test}`)
+        })
+        .then(function(res) {
+          expect(res).to.have.status(204);
+          return Expense.findById(expense.id);
+        })
+        .then(function(_expense) {
+          expect(_expense).to.be.null;
+        });
+    });
+  });
+
 });
 
