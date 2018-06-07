@@ -113,8 +113,8 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
     return closeServer();
   });
 
+  //test get request for each category using for loop
   describe('GET endpoint', function() {
-    //test get request for all categories using for loop
     const categoryArr = ['gas', 'restaurants', 'entertainment', 'groceries', 'medical', 'misc'];
 
     for (i = 0; i < categoryArr.length; i++) {

@@ -30,6 +30,23 @@ router.get('/:category', jwtAuth, (req, res) => {	//request to /items/:category
 	});
 });
 
+//get all expenses to total all
+router.get('/', jwtAuth, (req, res) => {
+	Expense
+	.find( {userId: req.user.id} ) 
+	.then(items => {
+		res.json({
+			expenses: items.map(item => {
+				return item.serialize();	
+			}) 
+		})
+	})
+	.catch(err => {
+		console.error(err);
+		res.status(500).json({ message: 'Internal server error' });
+	});
+});
+
 //post an expense
 router.post('/entry', jwtAuth, (req, res) => {
 	const requiredFields = ['category', 'description', 'cost'];
