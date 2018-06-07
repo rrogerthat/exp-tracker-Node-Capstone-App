@@ -15,39 +15,34 @@ function displayExpTotals() {
 					console.log(data.expenses[0].category);
 				}
 				const category = data.expenses[0].category;
+				let totalExp = 0; let totalExp2 = 0; let totalExp3 = 0;	let totalExp4 = 0; let totalExp5 = 0; let totalExp6 = 0;
 
-				if (category === 'gas') {
-					let totalExp = 0;							
+				if (category === 'gas') {			
 					for (index in data.expenses) {
 						totalExp += Number(data.expenses[index].cost);
 					}								  //formats to contain commas and 2 decimals
 					$('.total-1').html("$" + totalExp.toLocaleString(undefined, { minimumFractionDigits: 2 }));
-				} else if (category === 'restaurants') {
-					let totalExp2 = 0;							
+				} else if (category === 'restaurants') {					
 					for (index in data.expenses) {
 						totalExp2 += Number(data.expenses[index].cost);
 					}
 					$('.total-2').html("$" + totalExp2.toLocaleString(undefined, { minimumFractionDigits: 2 }));
-				} else if (category === 'entertainment') {
-					let totalExp3 = 0;							
+				} else if (category === 'entertainment') {				
 					for (index in data.expenses) {
 						totalExp3 += Number(data.expenses[index].cost);
 					}
 					$('.total-3').html("$" + totalExp3.toLocaleString(undefined, { minimumFractionDigits: 2 })); 
-				} else if (category === 'groceries') {
-					let totalExp4 = 0;							
+				} else if (category === 'groceries') {				
 					for (index in data.expenses) {
 						totalExp4 += Number(data.expenses[index].cost);
 					}
 					$('.total-4').html("$" + totalExp4.toLocaleString(undefined, { minimumFractionDigits: 2 }));
-				} else if (category === 'medical') {
-					let totalExp5 = 0;							
+				} else if (category === 'medical') {				
 					for (index in data.expenses) {
 						totalExp5 += Number(data.expenses[index].cost);
 					}
 					$('.total-5').html("$" + totalExp5.toLocaleString(undefined, { minimumFractionDigits: 2 }));
-				} else if (category === 'misc') {
-					let totalExp6 = 0;							
+				} else if (category === 'misc') {				
 					for (index in data.expenses) {
 						totalExp6 += Number(data.expenses[index].cost);
 					}
@@ -56,6 +51,23 @@ function displayExpTotals() {
 			}
 		})
 	}
+};
+
+//tally up all expenses
+function displayAllTotal() {
+	$.ajax({
+		type: 'GET',
+		url: '/items',	
+		dataType: 'json',
+		headers: {Authorization: `Bearer ${token}`},
+		success: function(data) {
+			let totalExp7 = 0;
+			for (index in data.expenses) {
+				totalExp7 += Number(data.expenses[index].cost);
+			}
+			$('.total-7').html("$" + totalExp7.toLocaleString(undefined, { minimumFractionDigits: 2 }));
+		}
+	})
 };
 
 //display list of expenses for each category
@@ -296,6 +308,7 @@ function enterNewExpense() {
 				//appends expense thru getAndDisplayExpenses()
 				$('#entry-form').trigger('reset'); 
 				displayExpTotals();
+				displayAllTotal();
 				$('#entry-page').hide(100);
 				$('#home-page').show(300);
 
@@ -339,7 +352,7 @@ function updateExpense() {
 		$('#home-page').hide(100);
 		$('#update-page').show(300);
 	})
-		//put this outside, seperate from above click event so only last edit button is targeted instead of all previous ones
+	//put this outside, seperate from above click event so only last edit button is targeted instead of all previous ones
 	$('#update-form').submit(function(event) {	
 	event.preventDefault();
 
@@ -365,6 +378,7 @@ function updateExpense() {
 			headers: {Authorization: `Bearer ${token}`},
 			success: function(data) {
 				displayExpTotals();
+				displayAllTotal();
 				$('#update-page').hide(100);
 				$('#home-page').show(300);
 				$('#update-form').trigger('reset');
@@ -398,6 +412,7 @@ function deleteExpense() {
 			success: function(data) {
 				$(event.target).closest('p').remove();
 				displayExpTotals();
+				displayAllTotal();
 			}
 		})
 	})
@@ -529,6 +544,7 @@ $(function() {
 				$('#username').html(`Logged in as: ${username}`);
 				token = data.authToken;
 				displayExpTotals();	//run here since token is given after you log in to access this protected data.
+				displayAllTotal();
 			},
 			error: function() {
 				alert('Please check username and/or password.');
