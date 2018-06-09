@@ -10,7 +10,7 @@ const jsonParser = bodyParser.json();
 // Post to register a new user
 router.post('/register', jsonParser, (req, res) => { //Post request to /users/register. 
   console.log(req.body);
-  const requiredFields = ['username', 'password'];   //In Postman, input JSON obj under raw. Choose JSON type.
+  const requiredFields = ['firstName', 'username', 'password'];   //In Postman, input JSON obj under raw. Choose JSON type.
   const missingField = requiredFields.find(field => !(field in req.body));
  
   if (missingField) {                 //Do these checks get to the front-end? Create our own notifications in client.js?

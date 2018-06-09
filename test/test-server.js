@@ -10,6 +10,7 @@ const { Expense } = require('../items/models');
 const {app, runServer, closeServer} = require('../server');  //import server.js and create variable for server.app
 
 const expect = chai.expect;
+
 chai.use(chaiHttp);
 
 let token_test; //global variable

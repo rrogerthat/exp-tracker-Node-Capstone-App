@@ -14,6 +14,25 @@ button, input {
 	margin-bottom: 20px;
 }
 
+#loginerror {
+	font-weight: bold;
+	font-style: italic;
+}
+
+#signup-error {
+	font-weight: bold;
+	font-style: italic;
+}
+
+#signup-success {
+	font-style: italic;
+}
+
+#entry-error {
+	font-weight: bold;
+	font-style: italic;
+}
+
 .totalTitle {				/* For alignment. Use a table next time */
 	display: inline-block;
 	margin-left: 0;
@@ -33,6 +52,7 @@ button, input {
 
 .expDescr {					/* mobile responsive FIRST! */
 	display: inline-block;
+	margin-left: 0;
 	/*min-width: 200px;*/
 }
 
@@ -40,8 +60,24 @@ button, input {
 	margin-left: 10px;
 }
 
+#loginBtn, #signupBtn, #cancelBtn, #regBtn, #entryBtn, #abortBtn, #entryBtn-2, #abortBtn-2{
+	margin-top: 10px;
+}
+
 #signoutBtn {
-	margin-left: 60px;
+	float: right;
+	margin-top: -15px;
+}
+
+#newExp {
+	/*display: inline-block;*/
+/*   	text-align: left;
+	margin-top: -15px;*/
+}
+
+#username {
+	margin-top: 10px;
+	text-align: right;
 }
 
 .expense-list {

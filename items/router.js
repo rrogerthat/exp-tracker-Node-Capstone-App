@@ -74,7 +74,7 @@ router.post('/entry', jwtAuth, (req, res) => {
     });
 });
 
-//to update an expense
+//to update an expense 
 router.put('/update/:id', jwtAuth, (req, res) => {
 	if (!(req.params.id && req.body.id && req.params.id  === req.body.id)) { //make sure ID's are entered and matched.
 		const message = (
