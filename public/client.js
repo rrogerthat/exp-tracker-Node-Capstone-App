@@ -503,7 +503,7 @@ $(function() {
 	});
 
 	//log out
-	$('#signoutBtn').click(function(event) { //homepage page
+	$('.signoutBtn').click(function(event) { //homepage & new entry page
 		// $('#home-page').hide(100);
 		// $('#login-page').show(300);
 		$('#username').empty();
@@ -565,13 +565,13 @@ $(function() {
 			},
 			error: function(res) {
 				if (first === '' || user === '' || pass === '') {
-					$('#signup-error').html('Please provide a first name, username, and password');
+					$('#signup-error').html('Please provide first name, username, and password');
 				} else if (res.responseJSON.message === 'Username already taken') {
 					$('#signup-error').html('Username already taken.');
 				} else if (pass.length < 6 || pass.length > 72) {
-					$('#signup-error').html('Password needs to be between 6 to 72 characters.');
+					$('#signup-error').html('Password needs to be between 6 to 72 characters');
 				} else if (res.responseJSON.message === 'Cannot start or end with whitespace') {
-					$('#signup-error').html('Username and password cannot start or end with empty spaces.');
+					$('#signup-error').html('Username and password cannot start or end with empty spaces');
 				} 
 			}
 		})

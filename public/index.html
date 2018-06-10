@@ -12,30 +12,30 @@
 	<div id="username"></div>
 
 <section id="home-page"> <!-- <li><a href="/">Go Home</a></li> --> <!--Sample route-->
-	<button id="signoutBtn" type="submit">Log Out</button><button id="newExp" type="submit">Add Expense</button>
+	<button class="signoutBtn" type="submit">Log Out</button><button id="newExp" type="submit">Add Expense</button>
 	<ul class="expense-list">
 		<li>
-			<span class="totalTitle">Gas Total:</span><span class="totalNum total-1"></span><button class="detailsBtn-1" type="submit">Show Details</button>
+			<span class="totalTitle">Gas Total:</span><span class="totalNum total-1"></span><button class="detailsBtn-1 detBtn" type="submit">Show Details</button>
 			<div class="expense-items-1" data-expanded="false"></div>	<!-- Using data attributes -->
 		</li>
 		<li>
-			<span class="totalTitle">Restaurants Total:</span><span class="totalNum total-2"></span><button class="detailsBtn-2" type="submit">Show Details</button>
+			<span class="totalTitle">Restaurants Total:</span><span class="totalNum total-2"></span><button class="detailsBtn-2 detBtn"  type="submit">Show Details</button>
 			<div class="expense-items-2" data-expanded="false"></div>
 		</li>
 		<li>
-			<span class="totalTitle">Entertainment Total:</span><span class="totalNum total-3"></span><button class="detailsBtn-3" type="submit">Show Details</button>
+			<span class="totalTitle">Entertainment Total:</span><span class="totalNum total-3"></span><button class="detailsBtn-3 detBtn" type="submit">Show Details</button>
 			<div class="expense-items-3" data-expanded="false"></div>
 		</li>
 		<li>
-			<span class="totalTitle">Groceries Total:</span><span class="totalNum total-4"></span><button class="detailsBtn-4" type="submit">Show Details</button>
+			<span class="totalTitle">Groceries Total:</span><span class="totalNum total-4"></span><button class="detailsBtn-4 detBtn" type="submit">Show Details</button>
 			<div class="expense-items-4" data-expanded="false"></div>
 		</li>
 		<li>
-			<span class="totalTitle">Medical Total:</span><span class="totalNum total-5"></span><button class="detailsBtn-5" type="submit">Show Details</button>
+			<span class="totalTitle">Medical Total:</span><span class="totalNum total-5"></span><button class="detailsBtn-5 detBtn" type="submit">Show Details</button>
 			<div class="expense-items-5" data-expanded="false"></div>
 		</li>
 		<li>
-			<span class="totalTitle">Misc Total:</span><span class="totalNum total-6"></span><button class="detailsBtn-6" type="submit">Show Details</button>
+			<span class="totalTitle">Misc Total:</span><span class="totalNum total-6"></span><button class="detailsBtn-6 detBtn" type="submit">Show Details</button>
 			<div class="expense-items-6" data-expanded="false"></div>
 		</li>
 		<li>
@@ -48,7 +48,7 @@
 	<form id="login-form">
 		<h3 id="login-afterreg">Track all your daily expenditures all in one simple-to-use app</h3>
 		<div id="signup-success"></div>
-		<fieldset name="login-info">
+		<fieldset class="form-center" name="login-info">
 			<legend>Login Info</legend>
 			<div id="loginerror"></div>
 			
@@ -61,13 +61,13 @@
       		<input id="loginBtn" type="submit" value="Sign In">
       		<button id="signupBtn" type="submit">Register</button>
 	</form><br>
-	<footer>DEMO LOGIN ACCOUNT - username: roger123 | password: 123456</footer>
+	<footer>DEMO LOGIN ACCOUNT:<br> username: roger123 | password: 123456</footer>
 </section>
 
 <section id="signup-page">
 	<form id="signup-form"> <!--submit event handler using jquery-->
 		<h2>Sign Up</h2>
-		<fieldset name="user-info">
+		<fieldset class="form-center" name="user-info">
 			<legend>User Info</legend>
 			<div id="signup-error"></div>
 
@@ -89,9 +89,10 @@
 </section>
 
 <section id="entry-page">
+	<button class="signoutBtn" type="submit">Log Out</button>
 	<form id ="entry-form">
 		<h2>Enter Expense</h2>
-		<fieldset name="expense-info">
+		<fieldset class="form-center" name="expense-info">
 			<legend>Expense</legend>
 			<div id="entry-error"></div>
 
@@ -122,7 +123,7 @@
 <section id="update-page">
 	<form id ="update-form">
 		<h2>Update Expense</h2>
-		<fieldset name="expense-info">
+		<fieldset class="form-center" name="expense-info">
 			<legend>Expense</legend>
 
 			<label for="category">Choose Category:</label>

@@ -3,15 +3,18 @@ body {
   font-family: 'Abel', sans-serif;	
   padding-left: 10px;
   padding-right: 10px;
+  background-color: #BDDBCF;
+  color: #3D413E;
 }
 
-button, input {
-	font-family: 'Abel', sans-serif;	
+.form-center {
+	background-color: #9FD7C8;
+	border-radius: 20px;
 }
 
-#username {
-	margin-top: -25px;
-	margin-bottom: 20px;
+h1 {
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	transition: 1s;
 }
 
 #loginerror {
@@ -33,51 +36,109 @@ button, input {
 	font-style: italic;
 }
 
-.totalTitle {				/* For alignment. Use a table next time */
+.totalTitle {				/* For alignment in homepage. Use a table next time */
 	display: inline-block;
 	margin-left: 0;
-	width: 130px;
+	width: 205px;
+	margin-bottom: 2px;
 }
 
 .totalNum {
 	display: inline-block;
-	width: 100px;
+	width: 150px;
+	margin-left: 0px;
 }
 
 .expDate {			/* So dates will align with total title above them */
     display: inline-block;
     margin-left: 0;
-    width: 115px;
+    width: 90px;
 }
 
 .expDescr {					/* mobile responsive FIRST! */
 	display: inline-block;
 	margin-left: 0;
-	/*min-width: 200px;*/
+	width: 205px;
+	overflow-wrap: break-word; /* so text description stays within width */
+}
+
+.expCost {
+	display: inline-block;
+	width: 150px;
+	margin-left: 0px;
+}
+
+input, #category {
+	border-radius: 40px;
+	padding: 5px;
+}
+
+button, input {
+	font-family: 'Abel', sans-serif;
+	letter-spacing: 0.5px;	
+	border: none;
+}
+
+button {
+	border-radius: 40px;
+	background-color: #81CEB9;
+	padding: 6px;
+}
+
+button:hover, #loginBtn:hover, #signupBtn:hover, #regBtn:hover, #entryBtn:hover {
+	background-color: #59B67F;
+	color: white;
+	transition: 0.3s;
+	text-decoration: underline;
 }
 
 .delBtn {
-	margin-left: 10px;
+	margin-left: 5px;
 }
 
-#loginBtn, #signupBtn, #cancelBtn, #regBtn, #entryBtn, #abortBtn, #entryBtn-2, #abortBtn-2{
+#loginBtn, #signupBtn, #cancelBtn, #regBtn, #entryBtn, #abortBtn, #entryBtn-2, #abortBtn-2 {
 	margin-top: 10px;
+	border: none;
+	background-color: #81CEB9;
+	padding: 6px;
+	border-radius: 40px;
 }
 
-#signoutBtn {
+.signoutBtn {
 	float: right;
 	margin-top: -15px;
 }
 
-#newExp {
-	/*display: inline-block;*/
-/*   	text-align: left;
-	margin-top: -15px;*/
+/* homepage- each list item */
+p {
+	border-radius: 7px;
+	padding-left: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	background: #DCFEED;
 }
 
-#username {
-	margin-top: 10px;
+p:nth-child(odd) {	
+    
+}
+
+p:nth-child(even) {
+    
+}
+
+#newExp {
+	margin-top: 15px;
+}
+
+#username {				/* logged in as */
 	text-align: right;
+	margin-top: -20px;
+	margin-bottom: 20px;
+}
+
+/* login, sign up, & new entry form input boxes */
+#login-name, #firstname-reg, #lastname-reg, #username-reg, #category, #date, #description {	
+	margin-bottom: 5px; 
 }
 
 .expense-list {
@@ -108,4 +169,113 @@ form label {
 form button {
 	display: block;
 	margin-top: 5px;
+}
+
+@media screen and (min-width: 365px) {
+	/* For alignment in homepage. Use a table next time */
+	.totalTitle {				
+		display: inline-block;
+		margin-left: 0;
+		width: 160px;
+		margin-bottom: 2px;
+	}
+
+	.totalNum {
+		display: inline-block;
+		width: 220px;
+		margin-left: 0px;
+	}
+
+	.expDescr {
+		display: inline-block;
+		margin-left: 0;
+		width: 320px;
+		overflow-wrap: break-word;
+	}
+
+	.expCost {
+		display: inline-block;
+		width: 205px;
+	}
+}
+
+@media screen and (min-width: 480px) {
+	.totalTitle {				
+		display: inline-block;
+		margin-left: 0;
+		width: 305px;
+		margin-bottom: 2px;
+	}
+
+	.totalNum {
+		display: inline-block;
+		width: 100px;
+		margin-left: 0px;
+	}
+
+	.expDescr {
+		display: inline-block;
+		margin-left: 0;
+		width: 195px;
+		overflow-wrap: break-word;
+	}
+
+	.expCost {
+		display: inline-block;
+		width: 100px;
+	}
+}
+
+@media screen and (min-width: 517px) {
+	.totalNum {
+		display: inline-block;
+		width: 110px;
+		margin-left: 0px;
+	}
+
+	.expCost {
+		display: inline-block;
+		width: 110px;
+	}
+}
+
+@media screen and (min-width: 527px) {
+	.totalNum {
+		display: inline-block;
+		width: 140px;
+		margin-left: 0px;
+	}
+
+	.expCost {
+		display: inline-block;
+		width: 140px;
+	}
+}
+
+@media screen and (min-width: 557px) {
+	.totalTitle {				
+		display: inline-block;
+		margin-left: 0;
+		width: 290px;
+		margin-bottom: 2px;
+	}
+
+	.totalNum {
+		display: inline-block;
+		width: 100px;
+		margin-left: 0px;
+	}
+
+	.expCost {
+		display: inline-block;
+		width: 100px;
+	}
+
+	.expDescr {
+		display: inline-block;
+		margin-left: 0;
+		width: 175px;
+		overflow-wrap: break-word;
+	}
+
 }
