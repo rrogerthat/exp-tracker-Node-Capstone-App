@@ -17,7 +17,7 @@ expSchema.methods.serialize = function() {	//serialize is self-created method na
 
 	return {
 		category: this.category,
-		date: (("0" + (date.getMonth() + 1)).slice(-2)) + '/' + ("0" + date.getDate()).slice(-2) + '/' +  date.getFullYear(),
+		date: (('0' + (date.getMonth() + 1)).slice(-2)) + '/' + ('0' + date.getDate()).slice(-2) + '/' +  date.getFullYear(),
 		description: this.description,
 		cost: `${this.cost.toFixed(2)}`,
 		created: this._id

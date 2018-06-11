@@ -16,12 +16,12 @@ router.use(bodyParser.json());
 //display expenses by category
 router.get('/:category', jwtAuth, (req, res) => {	//request to /items/:category
 	Expense
-	.find( {category: req.params.category, userId: req.user.id} ) //find data belonging to your ID under serialized User schema
+	.find( {category: req.params.category, userId: req.user.id} ) 
 	.then(items => {
 		res.json({
-			expenses: items.map(item => {	//or function(item) {}	
-				return item.serialize();	//remember to put 'return'
-			}) //if more than one object put in key, list of obj auto. put inside an array 
+			expenses: items.map(item => {	
+				return item.serialize();	
+			})  
 		})
 	})
 	.catch(err => {
@@ -63,7 +63,7 @@ router.post('/entry', jwtAuth, (req, res) => {
 	.create({
 		userId: req.user.id,	//so user accesses only his data
 		category: req.body.category,
-		date: req.body.date,	//in client.js, make required so no 'null' if empty?
+		date: req.body.date,	
 		description: req.body.description,
 		cost: req.body.cost
 	})
@@ -74,7 +74,7 @@ router.post('/entry', jwtAuth, (req, res) => {
     });
 });
 
-//to update an expense
+//to update an expense 
 router.put('/update/:id', jwtAuth, (req, res) => {
 	if (!(req.params.id && req.body.id && req.params.id  === req.body.id)) { //make sure ID's are entered and matched.
 		const message = (
@@ -94,8 +94,8 @@ router.put('/update/:id', jwtAuth, (req, res) => {
   	});
 
   	Expense
-  	.findByIdAndUpdate(req.params.id, { $set: toUpdate }) //$set operator replaces the value of a field with the specified value.
-  	.then(expense => res.status(200).json(expense.serialize())) //sends pre-updated obj in Postman?
+  	.findByIdAndUpdate(req.params.id, { $set: toUpdate }) 
+  	.then(expense => res.status(200).json(expense.serialize())) 
   	.catch(err => res.status(500).json({ message: 'Internal server error' }));
 });
 

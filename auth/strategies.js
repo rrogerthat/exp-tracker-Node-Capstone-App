@@ -8,47 +8,45 @@ const { JWT_SECRET } = require('../config');
 
 const localStrategy = new LocalStrategy((username, password, callback) => { //using passport-local module to authorize user
   let user;                                                                
-  User.findOne({ username: username })  //look for u/n supplied.
+  User.findOne({ username: username })  
     .then(_user => {                    
       user = _user;
       if (!user) {
-        // Return a rejected promise so we break out of the chain of .thens.
-        // Any errors like this will be handled in the catch block.
         return Promise.reject({
           reason: 'LoginError',
           message: 'Incorrect username or password'
         });
       }
-      return user.validatePassword(password);  //instance method from models.js. Boolean.
-    })  //If the password is valid, the user object will be added to the request object at req.user?
-    .then(isValid => {  //if p/w not valid (passed in from the above return)
-      if (!isValid) {  //ternary operator?
+      return user.validatePassword(password); 
+    })  
+    .then(isValid => {  
+      if (!isValid) {  
         return Promise.reject({
           reason: 'LoginError',
           message: 'Incorrect username or password'
         });
       }
-      return callback(null, user);  //null for no errors. If p/w valid, user obj added to req obj at req.user.
+      return callback(null, user);  
     })
     .catch(err => {
       if (err.reason === 'LoginError') {
-        return callback(null, false, err);  //err is message in reject (above).
+        return callback(null, false, err);  
       }
-      return callback(err, false);  //Error other than loginError?
+      return callback(err, false);  
     });
 });
 
-const jwtStrategy = new JwtStrategy(  //Object {}, then function  //using passport-jwt module (user accessing protected route)
+const jwtStrategy = new JwtStrategy(  
   {
-    secretOrKey: JWT_SECRET,  //This strategy uses this secret to decode token.
+    secretOrKey: JWT_SECRET, 
     // Look for the JWT as a Bearer auth header
-    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'), //This strategy retrieves token from request's Header.
-    // Only allow HS256 tokens - the same as the ones we issue  //In Postman, put in Headers: Authorization: Bearer <token>
+    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'), 
+    // Only allow HS256 tokens - the same as the ones we issue  
     algorithms: ['HS256']
   },
-  (payload, done) => {        //payload is 2nd section in JWT?
+  (payload, done) => {        
     done(null, payload.user); //assign user decoded from payload to req.user in req object.
-  }                           //(done is success case with null saying no errors with this user).
+  }                           
 );
 
 module.exports = { localStrategy, jwtStrategy };
