@@ -1,6 +1,6 @@
 let token; //global variable
 
-//To display totals for all expense categories
+//To display totals for each expense category
 function displayExpTotals() {
 	const categoryArr = ['gas', 'restaurants', 'entertainment', 'groceries', 'medical', 'misc'];
 
@@ -20,39 +20,39 @@ function displayExpTotals() {
 					for (index in data.expenses) {
 						totalExp += Number(data.expenses[index].cost);
 					}								  //formats to contain commas and 2 decimals
-					$('.total-1').html("$" + totalExp.toLocaleString(undefined, { minimumFractionDigits: 2}));
+					$('.total-1').html('$' + totalExp.toLocaleString(undefined, { minimumFractionDigits: 2}));
 				} else if (eachObj.category === 'restaurants') {					
 					for (index in data.expenses) {
 						totalExp2 += Number(data.expenses[index].cost);
 					}
-					$('.total-2').html("$" + totalExp2.toLocaleString(undefined, { minimumFractionDigits: 2 }));
+					$('.total-2').html('$' + totalExp2.toLocaleString(undefined, { minimumFractionDigits: 2 }));
 				} else if (eachObj.category === 'entertainment') {				
 					for (index in data.expenses) {
 						totalExp3 += Number(data.expenses[index].cost);
 					}
-					$('.total-3').html("$" + totalExp3.toLocaleString(undefined, { minimumFractionDigits: 2 })); 
+					$('.total-3').html('$' + totalExp3.toLocaleString(undefined, { minimumFractionDigits: 2 })); 
 				} else if (eachObj.category === 'groceries') {				
 					for (index in data.expenses) {
 						totalExp4 += Number(data.expenses[index].cost);
 					}
-					$('.total-4').html("$" + totalExp4.toLocaleString(undefined, { minimumFractionDigits: 2 }));
+					$('.total-4').html('$' + totalExp4.toLocaleString(undefined, { minimumFractionDigits: 2 }));
 				} else if (eachObj.category === 'medical') {				
 					for (index in data.expenses) {
 						totalExp5 += Number(data.expenses[index].cost);
 					}
-					$('.total-5').html("$" + totalExp5.toLocaleString(undefined, { minimumFractionDigits: 2 }));
+					$('.total-5').html('$' + totalExp5.toLocaleString(undefined, { minimumFractionDigits: 2 }));
 				} else if (eachObj.category === 'misc') {				
 					for (index in data.expenses) {
 						totalExp6 += Number(data.expenses[index].cost);
 					}
-					$('.total-6').html("$" + totalExp6.toLocaleString(undefined, { minimumFractionDigits: 2 }));
+					$('.total-6').html('$' + totalExp6.toLocaleString(undefined, { minimumFractionDigits: 2 }));
 				}
 			}
 		})
 	}
 };
 
-//tally up all expenses
+//tally up ALL expenses
 function displayAllTotal() {
 	$.ajax({
 		type: 'GET',
@@ -65,8 +65,7 @@ function displayAllTotal() {
 			for (index in data.expenses) {
 				totalExp7 += Number(data.expenses[index].cost);
 			}
-			$('.total-7').html("$" + totalExp7.toLocaleString(undefined, { minimumFractionDigits: 2 }));
-
+			$('.total-7').html('$' + totalExp7.toLocaleString(undefined, { minimumFractionDigits: 2 }));
 			//if you do not find specific category, display $0.00 for that category
 			//an issue since if u delete last exp in its category, displayExpTotal() will be undefined for that category
 			//and not function properly with category totals display	
@@ -112,7 +111,7 @@ function displayAllTotal() {
 
 //display list of expenses for each category
 function displayGasExpenses() {
-	$('.expense-list').on("click", ".detailsBtn-1", function(event) {
+	$('.expense-list').on('click', '.detailsBtn-1', function(event) {
 		let dataAttr = $('.expense-items-1').data().expanded;
 
 		$.ajax({
@@ -129,12 +128,13 @@ function displayGasExpenses() {
 					$('.detailsBtn-1').text('Hide Details');
 					for (index in data.expenses) {
 						$('.expense-items-1').append(
-						`<p><span class="expDate">${data.expenses[index].date}</span>
-						<span class="expDescr">${data.expenses[index].description}</span>
-						<span class="expCost">${data.expenses[index].cost}</span> 
-						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
-						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
-						<span class="expId" hidden>${data.expenses[index].created}</span></p>`); //in order to delete
+						`<p><span class='expDate'>${data.expenses[index].date}</span>
+						<span class='expDescr'>${data.expenses[index].description}</span>
+						<span class='expCost'>${data.expenses[index].cost}</span> 
+						<span class='expCategory' hidden>${data.expenses[index].category}</span> 
+						<button class='editBtn' type='submit' role='button'>Edit</button>
+						<button class='delBtn' type='submit' role='button'>Delete</button>
+						<span class='expId' hidden>${data.expenses[index].created}</span></p>`); 
 					}
 					$('.expense-items-1').data().expanded = true; //change data attr to true in order to hide exp details.
 				} else {	//hide exp details and set data attr to false
@@ -147,7 +147,7 @@ function displayGasExpenses() {
 };
 
 function displayRestaurantExpenses() {
-	$('.expense-list').on("click", ".detailsBtn-2", function(event) {
+	$('.expense-list').on('click', '.detailsBtn-2', function(event) {
 		let dataAttr = $('.expense-items-2').data().expanded;
 
 		$.ajax({
@@ -163,13 +163,14 @@ function displayRestaurantExpenses() {
 				} else if (dataAttr === false) { 
 					$('.detailsBtn-2').text('Hide Details');
 					for (index in data.expenses) {
-						$('.expense-items-2').append(	//hidden element to target ID to delete in db
-						`<p><span class="expDate">${data.expenses[index].date}</span>
-						<span class="expDescr">${data.expenses[index].description}</span>
-						<span class="expCost">${data.expenses[index].cost}</span>
-						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
-						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
-						<span class="expId" hidden>${data.expenses[index].created}</span></p>`);
+						$('.expense-items-2').append(	
+						`<p><span class='expDate'>${data.expenses[index].date}</span>
+						<span class='expDescr'>${data.expenses[index].description}</span>
+						<span class='expCost'>${data.expenses[index].cost}</span>
+						<span class='expCategory' hidden>${data.expenses[index].category}</span> 
+						<button class='editBtn' type='submit' role='button'>Edit</button> 
+						<button class='delBtn' type='submit' role='button'>Delete</button>
+						<span class='expId' hidden>${data.expenses[index].created}</span></p>`);
 					}
 					$('.expense-items-2').data().expanded = true; 
 				} else {
@@ -177,12 +178,12 @@ function displayRestaurantExpenses() {
 					$('.detailsBtn-2').text('Show Details');
 				}
 			}
-		})
+		}) 
 	});
 };
 
 function displayEntertainmentExpenses() {
-	$('.expense-list').on("click", ".detailsBtn-3", function(event) {
+	$('.expense-list').on('click', '.detailsBtn-3', function(event) {
 		let dataAttr = $('.expense-items-3').data().expanded;
 
 		$.ajax({
@@ -199,12 +200,13 @@ function displayEntertainmentExpenses() {
 					$('.detailsBtn-3').text('Hide Details');
 					for (index in data.expenses) {
 						$('.expense-items-3').append(
-						`<p><span class="expDate">${data.expenses[index].date}</span>
-						<span class="expDescr">${data.expenses[index].description}</span>
-						<span class="expCost">${data.expenses[index].cost}</span>
-						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
-						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
-						<span class="expId" hidden>${data.expenses[index].created}</span></p>`);
+						`<p><span class='expDate'>${data.expenses[index].date}</span>
+						<span class='expDescr'>${data.expenses[index].description}</span>
+						<span class='expCost'>${data.expenses[index].cost}</span>
+						<span class='expCategory' hidden>${data.expenses[index].category}</span> 
+						<button class='editBtn' type='submit' role='button'>Edit</button>
+						<button class='delBtn' type='submit' role='button'>Delete</button>
+						<span class='expId' hidden>${data.expenses[index].created}</span></p>`);
 					}
 					$('.expense-items-3').data().expanded = true;
 				} else {
@@ -217,7 +219,7 @@ function displayEntertainmentExpenses() {
 };
 
 function displayGroceryExpenses() {
-	$('.expense-list').on("click", ".detailsBtn-4", function(event) {
+	$('.expense-list').on('click', '.detailsBtn-4', function(event) {
 		let dataAttr = $('.expense-items-4').data().expanded;
 
 		$.ajax({
@@ -234,12 +236,13 @@ function displayGroceryExpenses() {
 					$('.detailsBtn-4').text('Hide Details');
 					for (index in data.expenses) {
 						$('.expense-items-4').append(
-						`<p><span class="expDate">${data.expenses[index].date}</span>
-						<span class="expDescr">${data.expenses[index].description}</span>
-						<span class="expCost">${data.expenses[index].cost}</span>
-						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
-						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
-						<span class="expId" hidden>${data.expenses[index].created}</span></p>`);
+						`<p><span class='expDate'>${data.expenses[index].date}</span>
+						<span class='expDescr'>${data.expenses[index].description}</span>
+						<span class='expCost'>${data.expenses[index].cost}</span>
+						<span class='expCategory' hidden>${data.expenses[index].category}</span> 
+						<button class='editBtn' type='submit' role='button'>Edit</button>
+						<button class='delBtn' type='submit' role='button'>Delete</button>
+						<span class='expId' hidden>${data.expenses[index].created}</span></p>`);
 					}
 					$('.expense-items-4').data().expanded = true;
 				} else {
@@ -252,7 +255,7 @@ function displayGroceryExpenses() {
 };
 
 function displayMedicalExpenses() {
-	$('.expense-list').on("click", ".detailsBtn-5", function(event) {
+	$('.expense-list').on('click', '.detailsBtn-5', function(event) {
 		let dataAttr = $('.expense-items-5').data().expanded;
 
 		$.ajax({
@@ -269,12 +272,13 @@ function displayMedicalExpenses() {
 					$('.detailsBtn-5').text('Hide Details');
 					for (index in data.expenses) {
 						$('.expense-items-5').append(
-						`<p><span class="expDate">${data.expenses[index].date}</span>
-						<span class="expDescr">${data.expenses[index].description}</span>
-						<span class="expCost">${data.expenses[index].cost}</span>
-						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
-						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
-						<span class="expId" hidden>${data.expenses[index].created}</span></p>`);
+						`<p><span class='expDate'>${data.expenses[index].date}</span>
+						<span class='expDescr'>${data.expenses[index].description}</span>
+						<span class='expCost'>${data.expenses[index].cost}</span> 
+						<span class='expCategory' hidden>${data.expenses[index].category}</span> 
+						<button class='editBtn' type='submit' role='button'>Edit</button>
+						<button class='delBtn' type='submit' role='button'>Delete</button>
+						<span class='expId' hidden>${data.expenses[index].created}</span></p>`);
 					}
 					$('.expense-items-5').data().expanded = true;
 				} else {
@@ -287,7 +291,7 @@ function displayMedicalExpenses() {
 };
 
 function displayMiscExpenses() {
-	$('.expense-list').on("click", ".detailsBtn-6", function(event) {
+	$('.expense-list').on('click', '.detailsBtn-6', function(event) {
 		let dataAttr = $('.expense-items-6').data().expanded;
 
 		$.ajax({
@@ -304,12 +308,13 @@ function displayMiscExpenses() {
 					$('.detailsBtn-6').text('Hide Details');
 					for (index in data.expenses) {
 						$('.expense-items-6').append(
-						`<p><span class="expDate">${data.expenses[index].date}</span>
-						<span class="expDescr">${data.expenses[index].description}</span>
-						<span class="expCost">${data.expenses[index].cost}</span>
-						<span class="expCategory" hidden>${data.expenses[index].category}</span> 
-						<button class="editBtn" type="submit">Edit</button> <button class="delBtn" type="submit">Delete</button>
-						<span class="expId" hidden>${data.expenses[index].created}</span></p>`);
+						`<p><span class='expDate'>${data.expenses[index].date}</span>
+						<span class='expDescr'>${data.expenses[index].description}</span>
+						<span class='expCost'>${data.expenses[index].cost}</span>
+						<span class='expCategory' hidden>${data.expenses[index].category}</span> 
+						<button class='editBtn' type='submit' role='button'>Edit</button>
+						<button class='delBtn' type='submit' role='button'>Delete</button>
+						<span class='expId' hidden>${data.expenses[index].created}</span></p>`);
 					}
 					$('.expense-items-6').data().expanded = true;
 				} else {
@@ -320,12 +325,12 @@ function displayMiscExpenses() {
 		})
 	});
 };
-
+//enter a new expense
 function enterNewExpense() {
 	$('#entry-form').submit(function(event) {
 		event.preventDefault();
 		//:selected selector works for <option> elements (selects all elements that are selected)
-		const category = $('#category').find(":selected").text(); 
+		const category = $('#category').find(':selected').text(); 
 		const date = $('#date').val();
 		const description = $('#description').val();
 		const cost = $('#cost').val();
@@ -353,7 +358,7 @@ function enterNewExpense() {
 				$('#entry-page').hide(100);
 				$('#home-page').fadeIn(800);
 
-				//close since need need to run getAndDisplayExpenses() for new entry to show up
+				//close exp details since need need to run getAndDisplayExpenses() for new entry to show up
 				$('.expense-items-1').empty().data().expanded = false;	
 				$('.detailsBtn-1').text('Show Details');
 				$('.expense-items-2').empty().data().expanded = false;
@@ -377,20 +382,20 @@ function enterNewExpense() {
 		})
 	});
 };
-
+//edit expense
 function updateExpense() {
 	let idCurr;
 	$('li').on('click', '.editBtn', function(event) {
-		// console.log(event.target);	//queing up all the event listeners with event.target
-		idCurr = $(event.target).closest('p').find('.expId').text(); //every edit you clicked gets changed in current session
+		// console.log(event.target);
+		idCurr = $(event.target).closest('p').find('.expId').text(); 
 		const dateCurr = new Date ($(event.target).closest('p').find('.expDate').text());
 		const descriptionCurr = $(event.target).closest('p').find('.expDescr').text();
 		const costCurr = $(event.target).closest('p').find('.expCost').text();
 		const categoryCurr = $(event.target).closest('p').find('.expCategory').text();
 
-		//target the classes in the form and set equal to dateCurr, etc.
+		//target the classes in the form and set equal to their values
 		$('#selectCat select').val(categoryCurr);
-		$('#date-2').val(dateCurr.toISOString().substr(0, 10)); //date format so it gets placed in input
+		$('#date-2').val(dateCurr.toISOString().substr(0, 10)); //date format so it gets placed in form input
 		$('#description-2').val(descriptionCurr);
 		$('#cost-2').val(costCurr);
 
@@ -401,7 +406,7 @@ function updateExpense() {
 	$('#update-form').submit(function(event) {	
 	event.preventDefault();
 
-		const newCategory = $('#category-2').find(":selected").text(); 
+		const newCategory = $('#category-2').find(':selected').text(); 
 		const newDate = $('#date-2').val();
 		const newDescr = $('#description-2').val();
 		const newCost = $('#cost-2').val();
@@ -428,7 +433,7 @@ function updateExpense() {
 				$('#home-page').fadeIn(800);
 				$('#update-form').trigger('reset');
 
-				//close since need need to run getAndDisplayExpenses() for update entry to show up
+				//close exp details since need to run getAndDisplayExpenses() for update entry to show up
 				$('.expense-items-1').empty().data().expanded = false;	
 				$('.detailsBtn-1').text('Show Details');
 				$('.expense-items-2').empty().data().expanded = false;
@@ -458,9 +463,6 @@ function deleteExpense() {
 				$(event.target).closest('p').remove();
 				displayAllTotal();
 				displayExpTotals();
-				// if (data.category === undefined) {
-				// 	console.log('last one');
-				// }
 			}
 		})
 	})
@@ -489,7 +491,7 @@ $(function() {
 	$('#signupBtn').click(function(event) {	//login page
 		$('#signup-error').empty();
 		$('#login-page').hide(100);
-		$('#signup-page').fadeIn(800); //smoother- instead of show()
+		$('#signup-page').fadeIn(800); //smoother display- instead of .show()
 		$('#login-form').trigger('reset');
 	});
 
@@ -504,10 +506,8 @@ $(function() {
 
 	//log out
 	$('.signoutBtn').click(function(event) { //homepage & new entry page
-		// $('#home-page').hide(100);
-		// $('#login-page').show(300);
 		$('#username').empty();
-		location.reload();
+		location.reload(); //instead of hide & show
 	});
 
 	//to open new entry form
@@ -561,7 +561,6 @@ $(function() {
 				$('#loginerror').empty();
 				$('#signup-page').hide(250);
 				$('#login-page').fadeIn(800);
-				// $('#login-afterreg').after('You have successfully signed up!');
 			},
 			error: function(res) {
 				if (first === '' || user === '' || pass === '') {

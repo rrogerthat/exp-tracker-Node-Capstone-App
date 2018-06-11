@@ -91,12 +91,12 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
   beforeEach(function() {
   	return chai.request(app)
   	.post('/users/register')
-  	.send({firstName:"Roger", lastName:"Hwang", username:"rogertest", password:"123456"})
+  	.send({firstName:'Roger', lastName:'Hwang', username:'rogertest', password:'123456'})
   	.then(function(res) {
   		userId = res.body.id; 
   		return chai.request(app)
   			.post('/auth/login')
-  			.send({username:"rogertest", password:"123456"})
+  			.send({username:'rogertest', password:'123456'})
   			.then(function(res) {
   				token_test = res.body.authToken; //becomes global variable
   			})
@@ -142,7 +142,7 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
           })
           .then(function(expense) {
             const date = new Date(expense.date);  //date in db is not formatted the same as in res.body so need to change
-            const newDateFormat = (("0" + (date.getMonth() + 1)).slice(-2)) + '/' + ("0" + date.getDate()).slice(-2) + '/' +  date.getFullYear();
+            const newDateFormat = (('0' + (date.getMonth() + 1)).slice(-2)) + '/' + ('0' + date.getDate()).slice(-2) + '/' +  date.getFullYear();
 
             expect(resExpense.created).to.equal(expense.id); //compare response body to db
             expect(resExpense.category).to.equal(expense.category);
@@ -164,7 +164,7 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
       .send(newExpense)
         .then(function(res) {
           const date = new Date(newExpense.date);
-          const newDateFormat = (("0" + (date.getMonth() + 1)).slice(-2)) + '/' + ("0" + date.getDate()).slice(-2) + '/' +  date.getFullYear();
+          const newDateFormat = (('0' + (date.getMonth() + 1)).slice(-2)) + '/' + ('0' + date.getDate()).slice(-2) + '/' +  date.getFullYear();
 
           expect(res).to.have.status(201);
           expect(res).to.be.json;
@@ -180,10 +180,10 @@ describe('Expenese API resource', function() {	//test sample to make sure testin
         })
         .then(function(expense) {
           const olddate = new Date(newExpense.date);
-          const newDateFormat = (("0" + (olddate.getMonth() + 1)).slice(-2)) + '/' + ("0" + olddate.getDate()).slice(-2) + '/' +  olddate.getFullYear();
+          const newDateFormat = (('0' + (olddate.getMonth() + 1)).slice(-2)) + '/' + ('0' + olddate.getDate()).slice(-2) + '/' +  olddate.getFullYear();
 
           const firstdate = new Date(expense.date);
-          const secDateFormat = (("0" + (firstdate.getMonth() + 1)).slice(-2)) + '/' + ("0" + firstdate.getDate()).slice(-2) + '/' +  firstdate.getFullYear();
+          const secDateFormat = (('0' + (firstdate.getMonth() + 1)).slice(-2)) + '/' + ('0' + firstdate.getDate()).slice(-2) + '/' +  firstdate.getFullYear();
 
           expect(expense.category).to.equal(newExpense.category);
           expect(secDateFormat).to.equal(newDateFormat);

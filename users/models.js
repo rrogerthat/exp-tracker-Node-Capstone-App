@@ -1,7 +1,6 @@
 'use strict';
 
 const mongoose = require('mongoose');
-// const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs'); //to hash pw's
 
 mongoose.Promise = global.Promise;
@@ -29,14 +28,14 @@ UserSchema.methods.serialize = function() {
   };
 };
 
-UserSchema.methods.validatePassword = function(password) {  //create method on User object?
+UserSchema.methods.validatePassword = function(password) {  
   return bcrypt.compare(password, this.password); //Boolean
 };
 
 UserSchema.statics.hashPassword = function(password) { 
-  return bcrypt.hash(password, 10); //10 stands for how many times salting algorithm is applied.
-};	//Hashing is a process that converts a raw, plain text pw to a string of (in principle) unguessable characters.
+  return bcrypt.hash(password, 10); 
+};	
 
 const User = mongoose.model('User', UserSchema); //new User model created using UserSchema. 
 												 //User becomes collection name in db and mongoose works off of "db.users"
-module.exports = {User};						 //to access schema outside the file.
+module.exports = {User};					

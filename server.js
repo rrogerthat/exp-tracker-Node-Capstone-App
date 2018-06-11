@@ -2,10 +2,10 @@
 
 require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');	//assists in communicating with Mongo db.
-const morgan = require('morgan');	//logging middleware
+const mongoose = require('mongoose');	
+const morgan = require('morgan');	
 const passport = require('passport');
-const bodyParser = require('body-parser');	//don't need for posts to /users to work?
+const bodyParser = require('body-parser');	
 
 const { router: usersRouter } = require('./users'); //rename router to usersRouter (Obj destr assignment)
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
@@ -16,9 +16,9 @@ const { PORT, DATABASE_URL } = require('./config');
 
 mongoose.Promise = global.Promise;
 
-const app = express();	//creates Express app.
-app.use(morgan('common'));	//use common style for logging (also for catch/try error logging)
-app.use(express.static('public'));	//to serve static assets from public folder.
+const app = express();	
+app.use(morgan('common'));	
+app.use(express.static('public'));	
 app.use(bodyParser.json());
 
 passport.use(localStrategy);
@@ -57,11 +57,11 @@ function runServer(databaseUrl, port = PORT) {
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {  //Use Mongoose to connect to the database, using the URL from config.js
       if (err) {
-        return reject(err);               //promise not fulfilled.
+        return reject(err);               
       }
-      server = app.listen(port, () => {   //Tell server where to listen for requests on the configured port. Run http server.
-        console.log(`Your app is listening on port ${port}`);	//localhost:8080
-        resolve();                        //promise fulfilled.
+      server = app.listen(port, () => {   
+        console.log(`Your app is listening on port ${port}`);	
+        resolve();                        
       })
         .on('error', err => {
           mongoose.disconnect();
@@ -76,20 +76,18 @@ function closeServer() {
   return mongoose.disconnect().then(() => {
     return new Promise((resolve, reject) => {
       console.log('Closing server');
-      server.close(err => {	//referring to server variable in runServer function
+      server.close(err => {	
         if (err) {
           return reject(err);
         }
-        resolve();  //if no error, promise fulfilled.
+        resolve();  
       });
     });
   });
 }
 
-// If server.js is called directly (with `node server.js`), this block runs since we still need to connect to db.
-// When a file is run directly from Node.js, require.main is set to its module.
 if (require.main === module) {
   runServer(DATABASE_URL).catch(err => console.error(err));
 }
 
-module.exports = { app, runServer, closeServer };	//export so tests can also run server.
+module.exports = { app, runServer, closeServer };	

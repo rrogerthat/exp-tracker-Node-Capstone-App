@@ -3,18 +3,43 @@ body {
   font-family: 'Abel', sans-serif;	
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #BDDBCF;
   color: #3D413E;
+  text-shadow: 1px 1px 1px whitesmoke: ;
+  background: linear-gradient(#BDDBCF, #BECFCA, #A8D9CA, #67A59B) no-repeat center center fixed; 
+  max-width: 600px;
+  margin: 10px auto; /* to overall center website */
+}
+
+section {
+	padding-top: 15px;
+}
+
+.title-center {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+	text-shadow: 1px 1px 1px honeydew;
+}
+
+img {
+	width: 75px;
+	height: 75px;
+	margin-right: 10px;
 }
 
 .form-center {
-	background-color: #9FD7C8;
 	border-radius: 20px;
+	background: linear-gradient(#9FD7C8, #6EC6B7);
+	box-shadow: 0 7px 4px #777;
 }
 
 h1 {
+	display: inline-block; /* so image can align next to this title */
 	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 	transition: 1s;
+	vertical-align: top;	/* so heading vertically centers with image */
 }
 
 #loginerror {
@@ -36,7 +61,7 @@ h1 {
 	font-style: italic;
 }
 
-.totalTitle {				/* For alignment in homepage. Use a table next time */
+.totalTitle {				/* For alignment in homepage. Use a table next time? */
 	display: inline-block;
 	margin-left: 0;
 	width: 205px;
@@ -55,7 +80,7 @@ h1 {
     width: 90px;
 }
 
-.expDescr {					/* mobile responsive FIRST! */
+.expDescr {					
 	display: inline-block;
 	margin-left: 0;
 	width: 205px;
@@ -68,28 +93,43 @@ h1 {
 	margin-left: 0px;
 }
 
-input, #category {
+input, select {
 	border-radius: 40px;
 	padding: 5px;
+	background-color: #FFFFFF;
+	box-shadow: 0 2px 2px #777;
 }
 
-button, input {
+button, input, select {
 	font-family: 'Abel', sans-serif;
 	letter-spacing: 0.5px;	
 	border: none;
 }
 
-button {
-	border-radius: 40px;
-	background-color: #81CEB9;
-	padding: 6px;
+input:focus {
+    background-color: #FFFFDD;
 }
 
-button:hover, #loginBtn:hover, #signupBtn:hover, #regBtn:hover, #entryBtn:hover {
+button {
+	border-radius: 40px;
+	background-color: #95E2D3;
+	padding: 5px;
+	border: 1px solid #5A9287;
+	box-shadow: 0 2px 2px #777;
+	text-shadow: 1px 1px 1px silver;
+}
+
+button:hover, #loginBtn:hover, #signupBtn:hover, #regBtn:hover, #entryBtn:hover, #cancelBtn:hover, #abortBtn:hover, 
+#entryBtn-2:hover, #abortBtn-2:hover {
 	background-color: #59B67F;
 	color: white;
 	transition: 0.3s;
 	text-decoration: underline;
+}
+
+input:focus, button:focus, #loginBtn:focus, #signupBtn:focus, #regBtn:focus, #entryBtn:focus, #cancelBtn:focus, 
+#abortBtn:focus, #entryBtn-2:focus, #abortBtn-2:focus, select:focus {
+	outline: 2px dashed #4E9874;
 }
 
 .delBtn {
@@ -98,10 +138,12 @@ button:hover, #loginBtn:hover, #signupBtn:hover, #regBtn:hover, #entryBtn:hover 
 
 #loginBtn, #signupBtn, #cancelBtn, #regBtn, #entryBtn, #abortBtn, #entryBtn-2, #abortBtn-2 {
 	margin-top: 10px;
-	border: none;
-	background-color: #81CEB9;
-	padding: 6px;
+	border: 1px solid #5A9287;
+	background-color: #95E2D3;
+	padding: 5px;
 	border-radius: 40px;
+	box-shadow: 0 2px 2px #777;
+	text-shadow: 1px 1px 1px silver;
 }
 
 .signoutBtn {
@@ -111,19 +153,12 @@ button:hover, #loginBtn:hover, #signupBtn:hover, #regBtn:hover, #entryBtn:hover 
 
 /* homepage- each list item */
 p {
-	border-radius: 7px;
+	border-radius: 10px;
 	padding-left: 5px;
 	padding-top: 2px;
-	padding-bottom: 2px;
-	background: #DCFEED;
-}
-
-p:nth-child(odd) {	
-    
-}
-
-p:nth-child(even) {
-    
+	padding-bottom: 3px;
+	background: linear-gradient(#FEFFFF, #E7F7F2);
+	box-shadow: 0 2px 1px #777;
 }
 
 #newExp {
@@ -132,12 +167,13 @@ p:nth-child(even) {
 
 #username {				/* logged in as */
 	text-align: right;
-	margin-top: -20px;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
+	text-shadow: 1px 2px 2px #aaa;
 }
 
 /* login, sign up, & new entry form input boxes */
-#login-name, #firstname-reg, #lastname-reg, #username-reg, #category, #date, #description {	
+#login-name, #firstname-reg, #lastname-reg, #username-reg, #category, #date, #description, #category-2, 
+#date-2, #description-2 {	
 	margin-bottom: 5px; 
 }
 
@@ -148,18 +184,15 @@ p:nth-child(even) {
 
 .expense-list > li {
 	font-weight: bold;
-	border-bottom: 1px solid grey;
+	border-bottom: 1px solid #6C786F;
 	margin-bottom: 10px;
+	padding-bottom: 3px;
 }
 
 span {
 	font-weight: bold;
 	margin-left: 10px;
 	margin-right: 15px;
-}
-
-div > p {
-	font-weight: normal; /* Don't bold individual amounts */
 }
 
 form label {
@@ -171,8 +204,8 @@ form button {
 	margin-top: 5px;
 }
 
-@media screen and (min-width: 365px) {
-	/* For alignment in homepage. Use a table next time */
+@media screen and (min-width: 354px) {
+	/* For alignment in homepage */
 	.totalTitle {				
 		display: inline-block;
 		margin-left: 0;
@@ -199,7 +232,7 @@ form button {
 	}
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 469px) {
 	.totalTitle {				
 		display: inline-block;
 		margin-left: 0;
@@ -226,7 +259,7 @@ form button {
 	}
 }
 
-@media screen and (min-width: 517px) {
+@media screen and (min-width: 501px) {
 	.totalNum {
 		display: inline-block;
 		width: 110px;
@@ -239,7 +272,7 @@ form button {
 	}
 }
 
-@media screen and (min-width: 527px) {
+@media screen and (min-width: 511px) {
 	.totalNum {
 		display: inline-block;
 		width: 140px;
@@ -252,7 +285,7 @@ form button {
 	}
 }
 
-@media screen and (min-width: 557px) {
+@media screen and (min-width: 541px) {
 	.totalTitle {				
 		display: inline-block;
 		margin-left: 0;
