@@ -32,7 +32,7 @@
 
 <h4>Login page:</h4>
 
-![login-page](https://user-images.githubusercontent.com/33015217/41247200-2bcec5ae-6d62-11e8-8181-8c582e98785d.PNG)
+![login-page](https://user-images.githubusercontent.com/33015217/41308824-d9ced05c-6e31-11e8-80e4-b8effbae8acc.PNG)
 
 <h4>Sign up page for a new user account:</h4>
 
