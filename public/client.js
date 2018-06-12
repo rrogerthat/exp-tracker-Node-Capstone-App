@@ -610,7 +610,7 @@ $(function() {
 				if (username === '' || password === '') {
 					$('#loginerror').html('Please enter username and password');
 				}
-				else {$('#loginerror').html('Incorrect username or password');}
+				else {$('#loginerror').html('Incorrect username or password')}
 			}
 		})
 
