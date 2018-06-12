@@ -12,7 +12,6 @@
 <li>CSS</li>
 <li>Javascript</li>
 <li>JQuery</li>
-<li>Front-end</li>
 
 <h4>Back-end:</h4>
 <li>Node.js</li>
