@@ -5,7 +5,7 @@ body {
   padding-right: 10px;
   color: #3D413E;
   text-shadow: 1px 1px 1px whitesmoke: ;
-  background: linear-gradient(#BDDBCF, #BECFCA, #A8D9CA, #67A59B) no-repeat center center fixed; 
+  background: linear-gradient(#BDDBCF, #BECFCA, #A8D9CA, #67A59B) no-repeat center fixed; 
   max-width: 600px;
   margin: 10px auto; /* to overall center website */
 }
@@ -23,6 +23,11 @@ h2 {
 	text-shadow: 1px 1px 1px honeydew;
 }
 
+footer {
+	margin-left: 5px;
+	text-shadow: 1px 1px 1px honeydew;
+}
+
 img {
 	width: 75px;
 	height: 75px;
@@ -31,7 +36,8 @@ img {
 
 .form-center {
 	border-radius: 20px;
-	background: linear-gradient(#9FD7C8, #6EC6B7);
+	border-color: #F0FEFC;
+	background: #AAE4CD;  /*linear gradient causes hover issues on ME */
 	box-shadow: 0 7px 4px #777;
 }
 
@@ -42,22 +48,12 @@ h1 {
 	vertical-align: top;	/* so heading vertically centers with image */
 }
 
-#loginerror {
-	font-weight: bold;
-	font-style: italic;
-}
-
-#signup-error {
+#loginerror, #signup-error, #entry-error {
 	font-weight: bold;
 	font-style: italic;
 }
 
 #signup-success {
-	font-style: italic;
-}
-
-#entry-error {
-	font-weight: bold;
 	font-style: italic;
 }
 
@@ -149,6 +145,10 @@ input:focus, button:focus, #loginBtn:focus, #signupBtn:focus, #regBtn:focus, #en
 .signoutBtn {
 	float: right;
 	margin-top: -15px;
+}
+
+#loginBtn, #regBtn, #entryBtn, #entryBtn-2 { /* For style to display on mobile phones */
+	-webkit-appearance: none;
 }
 
 /* homepage- each list item */
