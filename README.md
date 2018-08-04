@@ -2,7 +2,7 @@
 <p>CRUD API App</p>
 
 <p>A simple-to-use app to track your daily expenditures where you can add, delete, and edit your expenses and see the total amounts spent by category.</p>
-
+![login](https://user-images.githubusercontent.com/33015217/43672580-d47a5722-9765-11e8-90a2-79d24a89fff4.PNG)
 <p><b>Link:</b> https://node-exp-tracker.herokuapp.com/</p>
 
 <h3><u>Technology</u></h3>
