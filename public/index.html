@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Expense Tracker</title>
+	<link rel="shortcut icon" href="/favicon.PNG" type="image/png" />
 	<link rel="stylesheet" href="main.css">
 	<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
 </head>
@@ -54,10 +55,10 @@
 			<div id="loginerror" role="alertdialog"></div>
 			
 			<label for="login-name">Username:</label>
-			<input id="login-name" placeholder="johndoe111" type="text" name="login-name" aria-label="input" aria-live="assertive">
+			<input id="login-name" placeholder="johndoe111" type="text" name="login-name" aria-label="input" aria-live="assertive" size="35">
 
 			<label for="password">Password:</label>
-      		<input id="login-pw" placeholder="123456" type="password" name="password" aria-label="input"><br>
+      		<input id="login-pw" placeholder="123456" type="password" name="password" aria-label="input" size="35"><br>
 
       		<input id="loginBtn" type="submit" value="Sign In" aria-label="input">
       		<button id="signupBtn" type="submit" role="button">Register</button>
@@ -113,10 +114,10 @@
 			<input id="date" placeholder="12/01/2017" type="date" name="date" aria-label="input" aria-live="assertive">
 
 			<label for="description">Description:</label>
-      		<input id="description" type="text" name="description" placeholder="Abcd" maxlength="50" aria-label="input" aria-live="assertive">
+      		<input id="description" type="text" name="description" placeholder="Abcd" maxlength="50" aria-label="input" aria-live="assertive" size="35">
 
       		<label for="cost">Cost:</label>
-      		<input id="cost" type="number" name="cost" placeholder="10.00" step=".01" max="100000000" aria-label="input" aria-live="assertive"><br>
+      		<input id="cost" type="number" name="cost" placeholder="10.00" step=".01" max="100000000" aria-label="input" aria-live="assertive" size="35"><br>
 
       		<input id="entryBtn" type="submit" value="Submit" role="button"> <!--Use input for form submittal, get value() from inputs -->
       		<button id="abortBtn" type="submit" role="button" aria-label="Close">Cancel</button>
@@ -147,7 +148,7 @@
 			<input id="date-2" placeholder="12/01/2017" type="date" name="date" aria-label="input" aria-live="assertive" required>
 
 			<label for="description">Description:</label>
-      		<input id="description-2" type="text" name="description" placeholder="Abcd" maxlength="50" aria-label="input" aria-live="assertive" required>
+      		<input id="description-2" type="text" name="description" placeholder="Abcd" maxlength="50" aria-label="input" aria-live="assertive" size="35" required>
 
       		<label for="cost">Cost:</label>
       		<input id="cost-2" type="number" name="cost" placeholder="10.00" step=".01" max="100000000" aria-label="input" aria-live="assertive" required><br>
