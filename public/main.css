@@ -1,12 +1,13 @@
 body {
   box-sizing: border-box;
   font-family: 'Abel', sans-serif;	
+  font-size: 18px;
   padding-left: 10px;
   padding-right: 10px;
   color: #3D413E;
   text-shadow: 1px 1px 1px whitesmoke: ;
   background: linear-gradient(#BDDBCF, #BECFCA, #A8D9CA, #67A59B) no-repeat center fixed; 
-  max-width: 600px;
+  max-width: 700px;
   margin: 10px auto; /* to overall center website */
 }
 
@@ -39,6 +40,15 @@ img {
 	border-color: #F0FEFC;
 	background: #AAE4CD;  /*linear gradient causes hover issues on ME */
 	box-shadow: 0 7px 4px #777;
+}
+
+legend {
+	font-size: 24px;
+	letter-spacing: 1px;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             	 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+	
 }
 
 h1 {
@@ -90,6 +100,7 @@ h1 {
 }
 
 input, select {
+	font-size: 16px;
 	border-radius: 40px;
 	padding: 5px;
 	background-color: #FFFFFF;
@@ -107,6 +118,7 @@ input:focus {
 }
 
 button {
+	font-size: 16px;
 	border-radius: 40px;
 	background-color: #95E2D3;
 	padding: 5px;
@@ -185,6 +197,7 @@ p {
 .expense-list > li {
 	font-weight: bold;
 	border-bottom: 1px solid #6C786F;
+	box-shadow: 0 3px 1px -2px #777;
 	margin-bottom: 10px;
 	padding-bottom: 3px;
 }
@@ -285,7 +298,7 @@ form button {
 	}
 }
 
-@media screen and (min-width: 541px) {
+@media screen and (min-width: 545px) {
 	.totalTitle {				
 		display: inline-block;
 		margin-left: 0;
@@ -301,7 +314,7 @@ form button {
 
 	.expCost {
 		display: inline-block;
-		width: 100px;
+		width: 40px;
 	}
 
 	.expDescr {
@@ -311,4 +324,23 @@ form button {
 		overflow-wrap: break-word;
 	}
 
+	.editBtn {
+		margin-left: 50px;
+	}
+
+}
+
+@media screen and (min-width: 985px) {
+	body {
+		max-width: 850px;
+		font-size: 20px;
+	}
+
+	.detBtn {
+		margin-left: 130px;
+	} 
+
+	.editBtn {
+		margin-left: 180px;
+	}
 }
